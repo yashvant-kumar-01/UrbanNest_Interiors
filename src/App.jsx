@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ConsultationModal from './components/ConsultationModal';
+import OwnerModal from './components/OwnerModal';
 
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
@@ -19,13 +20,21 @@ import ConsultationPage from './pages/ConsultationPage';
 export default function App() {
   const [currentRoute, setCurrentRoute] = useState(window.location.hash || '#');
   const [isConsultationModalOpen, setIsConsultationModalOpen] = useState(false);
+  const [isOwnerModalOpen, setIsOwnerModalOpen] = useState(false);
 
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash || '#';
       setCurrentRoute(hash);
+      if (hash === '#/owner' || hash === '#/admin') {
+        setIsOwnerModalOpen(true);
+      }
       window.scrollTo({ top: 0, behavior: 'smooth' });
     };
+
+    if (window.location.hash === '#/owner' || window.location.hash === '#/admin') {
+      setIsOwnerModalOpen(true);
+    }
 
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
@@ -39,6 +48,9 @@ export default function App() {
 
   const openConsultationModal = () => setIsConsultationModalOpen(true);
   const closeConsultationModal = () => setIsConsultationModalOpen(false);
+
+  const openOwnerModal = () => setIsOwnerModalOpen(true);
+  const closeOwnerModal = () => setIsOwnerModalOpen(false);
 
   const renderContent = () => {
     const route = currentRoute;
@@ -102,12 +114,19 @@ export default function App() {
       <Footer
         navigateTo={navigateTo}
         openConsultationModal={openConsultationModal}
+        openOwnerModal={openOwnerModal}
       />
 
       <ConsultationModal
         isOpen={isConsultationModalOpen}
         onClose={closeConsultationModal}
       />
+
+      <OwnerModal
+        isOpen={isOwnerModalOpen}
+        onClose={closeOwnerModal}
+      />
     </div>
   );
 }
+

@@ -112,3 +112,39 @@ export function exportLeadsToCSV() {
   document.body.removeChild(link);
   return true;
 }
+
+// Function to get current Owner PIN (default: '1234')
+export function getOwnerPIN() {
+  try {
+    return localStorage.getItem('urbannest_owner_pin') || '1234';
+  } catch (e) {
+    return '1234';
+  }
+}
+
+// Function to update Owner PIN
+export function setOwnerPIN(newPin) {
+  try {
+    localStorage.setItem('urbannest_owner_pin', String(newPin).trim());
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+// Function to verify input PIN
+export function verifyOwnerPIN(inputPin) {
+  const currentPin = getOwnerPIN();
+  return String(inputPin).trim() === currentPin;
+}
+
+// Function to clear all leads (Owner only)
+export function clearSavedLeads() {
+  try {
+    localStorage.removeItem('urbannest_leads');
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
