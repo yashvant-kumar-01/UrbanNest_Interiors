@@ -79,7 +79,7 @@ export default function Header({ currentRoute, navigateTo, openConsultationModal
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
             <button 
               onClick={openConsultationModal}
-              className="btn btn-primary btn-sm"
+              className="btn btn-primary btn-sm header-cta-btn"
               style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}
             >
               <Calendar size={16} />
