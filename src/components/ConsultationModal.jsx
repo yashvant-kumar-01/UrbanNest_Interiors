@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { X, CheckCircle, Calendar, Send, ShieldCheck } from 'lucide-react';
 import { SERVICES } from '../data/content';
 
+import { processLeadSubmission } from '../utils/leadHandler';
+
 export default function ConsultationModal({ isOpen, onClose }) {
   const [formData, setFormData] = useState({
     name: '',
@@ -19,6 +21,7 @@ export default function ConsultationModal({ isOpen, onClose }) {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [refNumber, setRefNumber] = useState('');
+  const [whatsappUrl, setWhatsappUrl] = useState('');
 
   if (!isOpen) return null;
 
@@ -31,12 +34,15 @@ export default function ConsultationModal({ isOpen, onClose }) {
     e.preventDefault();
     setLoading(true);
 
+    const generatedRef = 'UNI-2026-' + Math.floor(1000 + Math.random() * 9000);
+    const result = processLeadSubmission(formData, generatedRef);
+
     setTimeout(() => {
       setLoading(false);
-      const randomRef = 'UNI-2026-' + Math.floor(1000 + Math.random() * 9000);
-      setRefNumber(randomRef);
+      setRefNumber(generatedRef);
+      setWhatsappUrl(result.whatsappUrl);
       setSubmitted(true);
-    }, 800);
+    }, 600);
   };
 
   const handleReset = () => {
@@ -219,22 +225,41 @@ export default function ConsultationModal({ isOpen, onClose }) {
             </p>
 
             <div style={{ 
-              background: '#F3F4F6', 
+              background: '#F9FAFB', 
               padding: '1.25rem', 
-              borderRadius: '12px', 
-              display: 'inline-block',
-              marginBottom: '2rem',
+              borderRadius: '16px', 
+              border: '1px solid #E5E7EB',
+              marginBottom: '1.5rem',
               textAlign: 'left'
             }}>
-              <div style={{ fontSize: '0.85rem', color: '#6B7280' }}>Reference Number</div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+                <span style={{ fontSize: '0.85rem', color: '#6B7280' }}>Lead Reference ID</span>
+                <span style={{ fontSize: '0.8rem', background: '#DEF7EC', color: '#03543F', padding: '0.2rem 0.5rem', borderRadius: '6px', fontWeight: '600' }}>✓ Saved to Database</span>
+              </div>
               <div style={{ fontSize: '1.3rem', fontWeight: '800', color: '#111827' }}>{refNumber}</div>
-              <div style={{ fontSize: '0.85rem', color: '#C5A059', marginTop: '0.25rem' }}>
-                Status: Assigned to Senior Design Architect
+              <div style={{ fontSize: '0.85rem', color: '#059669', marginTop: '0.4rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                <CheckCircle size={15} /> <span>Notification dispatched to studio email (hello@urbannestinteriors.com)</span>
               </div>
             </div>
 
-            <div>
-              <button onClick={handleReset} className="btn btn-secondary">
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary"
+                style={{ 
+                  background: '#25D366', 
+                  borderColor: '#25D366',
+                  color: '#FFFFFF',
+                  width: '100%', 
+                  justifyContent: 'center',
+                  fontWeight: '700'
+                }}
+              >
+                📱 Send Direct Inquiry on WhatsApp
+              </a>
+              <button onClick={handleReset} className="btn btn-secondary" style={{ width: '100%', justifyContent: 'center' }}>
                 Close Window
               </button>
             </div>

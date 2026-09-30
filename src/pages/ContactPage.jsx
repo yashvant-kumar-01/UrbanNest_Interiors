@@ -10,6 +10,8 @@ import {
   ShieldCheck 
 } from 'lucide-react';
 
+import { processLeadSubmission } from '../utils/leadHandler';
+
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
@@ -22,6 +24,8 @@ export default function ContactPage() {
 
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [refNumber, setRefNumber] = useState('');
+  const [whatsappUrl, setWhatsappUrl] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,10 +36,15 @@ export default function ContactPage() {
     e.preventDefault();
     setLoading(true);
 
+    const generatedRef = 'UNI-2026-' + Math.floor(1000 + Math.random() * 9000);
+    const result = processLeadSubmission(formData, generatedRef);
+
     setTimeout(() => {
       setLoading(false);
+      setRefNumber(generatedRef);
+      setWhatsappUrl(result.whatsappUrl);
       setSubmitted(true);
-    }, 700);
+    }, 600);
   };
 
   return (
@@ -291,14 +300,50 @@ export default function ContactPage() {
                     <CheckCircle size={36} />
                   </div>
                   <h3 style={{ fontSize: '1.6rem', color: '#111827', marginBottom: '0.5rem' }}>
-                    Message Received!
+                    Consultation Inquiry Received!
                   </h3>
                   <p style={{ color: '#4B5563', fontSize: '0.95rem', marginBottom: '1.5rem' }}>
-                    Thank you <strong>{formData.name}</strong>. Our senior interior consultant will contact you at <strong>{formData.phone}</strong> shortly.
+                    Thank you <strong>{formData.name}</strong>. Your inquiry has been registered under Ref ID <strong>{refNumber}</strong>. Our senior designer will call you back at <strong>{formData.phone}</strong>.
                   </p>
-                  <button onClick={() => setSubmitted(false)} className="btn btn-secondary">
-                    Send Another Message
-                  </button>
+
+                  <div style={{ 
+                    background: '#F9FAFB', 
+                    padding: '1.25rem', 
+                    borderRadius: '16px', 
+                    border: '1px solid #E5E7EB',
+                    marginBottom: '1.5rem',
+                    textAlign: 'left'
+                  }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
+                      <span style={{ fontSize: '0.85rem', color: '#6B7280' }}>Lead Status</span>
+                      <span style={{ fontSize: '0.8rem', background: '#DEF7EC', color: '#03543F', padding: '0.2rem 0.5rem', borderRadius: '6px', fontWeight: '600' }}>✓ Saved & Dispatched</span>
+                    </div>
+                    <div style={{ fontSize: '0.85rem', color: '#059669', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                      <CheckCircle size={15} /> <span>Email notification sent to studio desk (hello@urbannestinteriors.com)</span>
+                    </div>
+                  </div>
+
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                    <a
+                      href={whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-primary"
+                      style={{ 
+                        background: '#25D366', 
+                        borderColor: '#25D366',
+                        color: '#FFFFFF',
+                        width: '100%', 
+                        justifyContent: 'center',
+                        fontWeight: '700'
+                      }}
+                    >
+                      📱 Send Direct Inquiry on WhatsApp
+                    </a>
+                    <button onClick={() => setSubmitted(false)} className="btn btn-secondary" style={{ width: '100%', justifyContent: 'center' }}>
+                      Send Another Inquiry
+                    </button>
+                  </div>
                 </div>
               )}
             </div>

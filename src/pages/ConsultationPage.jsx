@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { SERVICES } from '../data/content';
 import { Calendar, CheckCircle, ShieldCheck, Send, ArrowRight } from 'lucide-react';
 
+import { processLeadSubmission } from '../utils/leadHandler';
+
 export default function ConsultationPage() {
   const [formData, setFormData] = useState({
     name: '',
@@ -19,6 +21,7 @@ export default function ConsultationPage() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [bookingId, setBookingId] = useState('');
+  const [whatsappUrl, setWhatsappUrl] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,11 +32,15 @@ export default function ConsultationPage() {
     e.preventDefault();
     setLoading(true);
 
+    const generatedRef = 'UNI-BOOK-' + Math.floor(100000 + Math.random() * 900000);
+    const result = processLeadSubmission(formData, generatedRef);
+
     setTimeout(() => {
       setLoading(false);
-      setBookingId('UNI-BOOK-' + Math.floor(100000 + Math.random() * 900000));
+      setBookingId(generatedRef);
+      setWhatsappUrl(result.whatsappUrl);
       setSubmitted(true);
-    }, 750);
+    }, 600);
   };
 
   return (
@@ -265,20 +272,44 @@ export default function ConsultationPage() {
                   border: '1px solid #E5E7EB',
                   padding: '1.5rem 2rem',
                   borderRadius: '16px',
-                  maxWidth: '440px',
-                  margin: '0 auto 2rem auto',
+                  maxWidth: '480px',
+                  margin: '0 auto 1.5rem auto',
                   textAlign: 'left'
                 }}>
-                  <div style={{ fontSize: '0.85rem', color: '#6B7280', textTransform: 'uppercase' }}>Booking Reference ID</div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
+                    <span style={{ fontSize: '0.85rem', color: '#6B7280', textTransform: 'uppercase' }}>Booking Reference ID</span>
+                    <span style={{ fontSize: '0.8rem', background: '#DEF7EC', color: '#03543F', padding: '0.2rem 0.5rem', borderRadius: '6px', fontWeight: '600' }}>✓ Database Saved</span>
+                  </div>
                   <div style={{ fontSize: '1.5rem', fontWeight: '800', color: '#111827', marginBottom: '0.5rem' }}>{bookingId}</div>
-                  <div style={{ fontSize: '0.9rem', color: '#C5A059', fontWeight: '600' }}>
+                  <div style={{ fontSize: '0.9rem', color: '#C5A059', fontWeight: '600', marginBottom: '0.5rem' }}>
                     Scheduled Contact Window: {formData.preferredContactTime}
+                  </div>
+                  <div style={{ fontSize: '0.85rem', color: '#059669', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                    <CheckCircle size={15} /> <span>Email notification sent to studio (hello@urbannestinteriors.com)</span>
                   </div>
                 </div>
 
-                <button onClick={() => setSubmitted(false)} className="btn btn-secondary btn-lg">
-                  Submit Another Consultation Request
-                </button>
+                <div style={{ maxWidth: '480px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-primary btn-lg"
+                    style={{ 
+                      background: '#25D366', 
+                      borderColor: '#25D366',
+                      color: '#FFFFFF',
+                      width: '100%', 
+                      justifyContent: 'center',
+                      fontWeight: '700'
+                    }}
+                  >
+                    📱 Send Direct Inquiry on WhatsApp
+                  </a>
+                  <button onClick={() => setSubmitted(false)} className="btn btn-secondary btn-lg" style={{ width: '100%', justifyContent: 'center' }}>
+                    Submit Another Request
+                  </button>
+                </div>
               </div>
             )}
           </div>

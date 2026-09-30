@@ -8,9 +8,21 @@ import {
   Send 
 } from 'lucide-react';
 
+import { exportLeadsToCSV, getSavedLeads } from '../utils/leadHandler';
+
 export default function Footer({ navigateTo, openConsultationModal }) {
   const handleLink = (route) => {
     navigateTo(route);
+  };
+
+  const handleExport = () => {
+    const leads = getSavedLeads();
+    if (leads.length === 0) {
+      alert('No customer leads currently stored in browser. Form submissions will appear here!');
+    } else {
+      exportLeadsToCSV();
+      alert(`Exporting ${leads.length} customer lead(s) to CSV Excel file!`);
+    }
   };
 
   return (
@@ -109,7 +121,10 @@ export default function Footer({ navigateTo, openConsultationModal }) {
           <div>
             © {new Date().getFullYear()} UrbanNest Interiors. All Rights Reserved. Designed in Ahmedabad.
           </div>
-          <div style={{ display: 'flex', gap: '1.5rem' }}>
+          <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
+            <span style={{ cursor: 'pointer', color: '#C5A059', fontWeight: '600' }} onClick={handleExport} title="Download stored customer inquiries as CSV Excel">
+              📥 Owner: Export Leads (CSV)
+            </span>
             <span style={{ cursor: 'pointer' }} onClick={() => handleLink('#/contact')}>Privacy Policy</span>
             <span style={{ cursor: 'pointer' }} onClick={() => handleLink('#/contact')}>Terms of Service</span>
             <span style={{ cursor: 'pointer' }} onClick={() => handleLink('#/process')}>10-Year Warranty Terms</span>
