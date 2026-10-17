@@ -26,10 +26,10 @@ export default function BlogDetailPage({ slug, navigateTo, openConsultationModal
     <div>
       {/* Back button strip */}
       <div style={{ background: '#1F2937', padding: '0.75rem 0', color: '#D1D5DB', fontSize: '0.875rem' }}>
-        <div className="container" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <div className="container" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap', overflowWrap: 'break-word' }}>
           <button
             onClick={() => navigateTo('#/blog')}
-            style={{ background: 'none', border: 'none', color: '#C5A059', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.3rem', fontWeight: '600' }}
+            style={{ background: 'none', border: 'none', color: '#C5A059', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.3rem', fontWeight: '600', padding: 0 }}
           >
             <ChevronLeft size={16} /> All Journal Articles
           </button>

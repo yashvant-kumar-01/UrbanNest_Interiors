@@ -129,9 +129,13 @@ export default function ProcessPage({ openConsultationModal }) {
           </div>
 
           <div style={{ textAlign: 'center', marginTop: '4rem' }}>
-            <button onClick={openConsultationModal} className="btn btn-primary btn-lg">
+            <button 
+              onClick={openConsultationModal} 
+              className="btn btn-primary btn-lg"
+              style={{ maxWidth: '100%', whiteSpace: 'normal', textAlign: 'center' }}
+            >
               <span>Start Step 01 - Book Free Consultation</span>
-              <ArrowRight size={18} />
+              <ArrowRight size={18} style={{ flexShrink: 0 }} />
             </button>
           </div>
         </div>

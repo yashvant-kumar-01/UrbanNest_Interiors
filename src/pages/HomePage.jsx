@@ -397,9 +397,10 @@ export default function HomePage({ navigateTo, openConsultationModal }) {
             <button 
               onClick={() => navigateTo('#/process')} 
               className="btn btn-outline"
+              style={{ maxWidth: '100%', whiteSpace: 'normal', textAlign: 'center' }}
             >
               <span>Learn Detailed Process & Timeline Guarantee</span>
-              <ArrowRight size={16} />
+              <ArrowRight size={16} style={{ flexShrink: 0 }} />
             </button>
           </div>
         </div>

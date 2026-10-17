@@ -61,16 +61,16 @@ export default function ServiceDetailPage({ slug, navigateTo, openConsultationMo
               <div className="badge-tag" style={{ background: 'rgba(197, 160, 89, 0.2)', color: '#C5A059' }}>
                 Service Detail • Ahmedabad
               </div>
-              <h1 style={{ fontSize: '3.2rem', color: '#FFFFFF', marginBottom: '1rem', lineHeight: '1.15' }}>
+              <h1 style={{ fontSize: 'clamp(1.75rem, 5vw, 3.2rem)', color: '#FFFFFF', marginBottom: '1rem', lineHeight: '1.2' }}>
                 {service.title} in Ahmedabad
               </h1>
               <p style={{ fontSize: '1.2rem', color: '#D1D5DB', marginBottom: '2rem', lineHeight: '1.6' }}>
                 {service.shortDesc}
               </p>
 
-              <div style={{ display: 'flex', gap: '1.25rem', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
                 <button onClick={openConsultationModal} className="btn btn-primary btn-lg">
-                  <Calendar size={18} />
+                  <Calendar size={18} style={{ flexShrink: 0 }} />
                   <span>Book Service Consultation</span>
                 </button>
                 <button onClick={() => navigateTo('#/projects')} className="btn btn-outline-white btn-lg">
@@ -85,7 +85,7 @@ export default function ServiceDetailPage({ slug, navigateTo, openConsultationMo
       {/* Main Service Description & Highlights */}
       <section style={{ padding: '6rem 0', background: '#FFFFFF' }}>
         <div className="container">
-          <div className="grid-2" style={{ gap: '4rem', alignItems: 'flex-start' }}>
+          <div className="grid-2 detail-overview-grid" style={{ alignItems: 'flex-start' }}>
             <div>
               <div className="badge-tag">Service Overview</div>
               <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '1.25rem' }}>
@@ -95,7 +95,7 @@ export default function ServiceDetailPage({ slug, navigateTo, openConsultationMo
                 {service.fullDesc}
               </p>
 
-              <div style={{ background: 'var(--color-bg-light)', padding: '2rem', borderRadius: '16px', border: '1px solid #E5E7EB', marginBottom: '2rem' }}>
+              <div style={{ background: 'var(--color-bg-light)', padding: '1.5rem 1.25rem', borderRadius: '16px', border: '1px solid #E5E7EB', marginBottom: '2rem' }}>
                 <h3 style={{ fontSize: '1.2rem', marginBottom: '1rem', color: '#111827' }}>
                   Why Homeowners Choose Our {service.title}
                 </h3>
@@ -111,13 +111,15 @@ export default function ServiceDetailPage({ slug, navigateTo, openConsultationMo
             </div>
 
             {/* Inclusions Box */}
-            <div style={{
-              background: '#111827',
-              color: '#FFFFFF',
-              padding: '2.5rem',
-              borderRadius: '20px',
-              boxShadow: 'var(--shadow-xl)'
-            }}>
+            <div 
+              className="service-inclusions-box"
+              style={{
+                background: '#111827',
+                color: '#FFFFFF',
+                borderRadius: '20px',
+                boxShadow: 'var(--shadow-xl)'
+              }}
+            >
               <div style={{ fontSize: '0.85rem', color: '#C5A059', textTransform: 'uppercase', tracking: '0.05em', fontWeight: '700', marginBottom: '0.5rem' }}>
                 What We Provide
               </div>

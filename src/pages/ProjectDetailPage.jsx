@@ -21,15 +21,15 @@ export default function ProjectDetailPage({ projectId, navigateTo, openConsultat
     <div>
       {/* Back button strip */}
       <div style={{ background: '#1F2937', padding: '0.75rem 0', color: '#D1D5DB', fontSize: '0.875rem' }}>
-        <div className="container" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <div className="container" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap', overflowWrap: 'break-word', wordBreak: 'break-word' }}>
           <button 
             onClick={() => navigateTo('#/projects')}
-            style={{ background: 'none', border: 'none', color: '#C5A059', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.3rem', fontWeight: '600' }}
+            style={{ background: 'none', border: 'none', color: '#C5A059', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.3rem', fontWeight: '600', padding: 0 }}
           >
             <ChevronLeft size={16} /> All Portfolio Projects
           </button>
           <span>/</span>
-          <span>{project.title}</span>
+          <span style={{ color: '#E5E7EB', overflowWrap: 'break-word' }}>{project.title}</span>
         </div>
       </div>
 
@@ -41,7 +41,7 @@ export default function ProjectDetailPage({ projectId, navigateTo, openConsultat
             textAlign: 'left'
           }}>
           <div style={{ maxWidth: '800px' }}>
-            <div style={{ display: 'inline-flex', gap: '0.75rem', marginBottom: '1rem' }}>
+            <div style={{ display: 'inline-flex', gap: '0.75rem', marginBottom: '1rem', flexWrap: 'wrap' }}>
               <span className="badge-tag" style={{ background: 'rgba(197, 160, 89, 0.2)', color: '#C5A059' }}>
                 {project.category}
               </span>
@@ -50,7 +50,7 @@ export default function ProjectDetailPage({ projectId, navigateTo, openConsultat
               </span>
             </div>
 
-            <h1 style={{ fontSize: '3.2rem', color: '#FFFFFF', marginBottom: '0.75rem' }}>
+            <h1 style={{ fontSize: 'clamp(1.75rem, 5vw, 3.2rem)', color: '#FFFFFF', marginBottom: '0.75rem', lineHeight: '1.2' }}>
               {project.title}
             </h1>
             <p style={{ fontSize: '1.25rem', color: '#D1D5DB', marginBottom: '2rem' }}>
@@ -92,7 +92,7 @@ export default function ProjectDetailPage({ projectId, navigateTo, openConsultat
       {/* Overview & Story */}
       <section style={{ padding: '6rem 0', background: '#FFFFFF' }}>
         <div className="container">
-          <div className="grid-2" style={{ gap: '4rem', alignItems: 'flex-start' }}>
+          <div className="grid-2 detail-overview-grid" style={{ alignItems: 'flex-start' }}>
             <div>
               <div className="badge-tag">Project Story</div>
               <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '1.25rem' }}>
@@ -125,12 +125,14 @@ export default function ProjectDetailPage({ projectId, navigateTo, openConsultat
             </div>
 
             {/* Room Breakdown Box */}
-            <div style={{
-              background: 'var(--color-bg-light)',
-              padding: '2.5rem',
-              borderRadius: '20px',
-              border: '1px solid #E5E7EB'
-            }}>
+            <div 
+              className="room-breakdown-box"
+              style={{
+                background: 'var(--color-bg-light)',
+                borderRadius: '20px',
+                border: '1px solid #E5E7EB'
+              }}
+            >
               <h3 style={{ fontSize: '1.5rem', color: '#111827', marginBottom: '1.5rem' }}>
                 Room-by-Room Execution Details
               </h3>
@@ -152,10 +154,10 @@ export default function ProjectDetailPage({ projectId, navigateTo, openConsultat
                 <button 
                   onClick={openConsultationModal}
                   className="btn btn-primary"
-                  style={{ width: '100%', justifyContent: 'center' }}
+                  style={{ width: '100%', justifyContent: 'center', whiteSpace: 'normal', textAlign: 'center', padding: '0.85rem 1rem' }}
                 >
                   <span>Book Consultation For Your Space</span>
-                  <ArrowRight size={16} />
+                  <ArrowRight size={16} style={{ flexShrink: 0 }} />
                 </button>
               </div>
             </div>
