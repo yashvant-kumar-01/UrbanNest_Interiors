@@ -117,13 +117,14 @@ export default function ServiceDetailPage({ slug, navigateTo, openConsultationMo
                 background: '#111827',
                 color: '#FFFFFF',
                 borderRadius: '20px',
-                boxShadow: 'var(--shadow-xl)'
+                boxShadow: 'var(--shadow-xl)',
+                boxSizing: 'border-box'
               }}
             >
               <div style={{ fontSize: '0.85rem', color: '#C5A059', textTransform: 'uppercase', tracking: '0.05em', fontWeight: '700', marginBottom: '0.5rem' }}>
                 What We Provide
               </div>
-              <h3 style={{ color: '#FFFFFF', fontSize: '1.75rem', marginBottom: '1.25rem' }}>
+              <h3 style={{ color: '#FFFFFF', fontSize: '1.75rem', marginTop: 0, marginBottom: '1.25rem', lineHeight: '1.3' }}>
                 Turnkey Scope of Work
               </h3>
 

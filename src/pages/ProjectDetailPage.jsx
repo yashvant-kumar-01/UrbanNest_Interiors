@@ -105,7 +105,7 @@ export default function ProjectDetailPage({ projectId, navigateTo, openConsultat
               {/* Challenge & Solution Cards */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                 <div style={{ background: '#FFFBEB', padding: '1.5rem', borderRadius: '12px', border: '1px solid #FDE68A' }}>
-                  <h3 style={{ fontSize: '1.1rem', color: '#92400E', marginBottom: '0.4rem' }}>
+                  <h3 style={{ fontSize: '1.1rem', color: '#92400E', marginTop: 0, marginBottom: '0.4rem' }}>
                     The Design Challenge
                   </h3>
                   <p style={{ fontSize: '0.925rem', color: '#B45309', lineHeight: '1.6' }}>
@@ -114,7 +114,7 @@ export default function ProjectDetailPage({ projectId, navigateTo, openConsultat
                 </div>
 
                 <div style={{ background: '#ECFDF5', padding: '1.5rem', borderRadius: '12px', border: '1px solid #A7F3D0' }}>
-                  <h3 style={{ fontSize: '1.1rem', color: '#065F46', marginBottom: '0.4rem' }}>
+                  <h3 style={{ fontSize: '1.1rem', color: '#065F46', marginTop: 0, marginBottom: '0.4rem' }}>
                     Our Architectural Solution
                   </h3>
                   <p style={{ fontSize: '0.925rem', color: '#047857', lineHeight: '1.6' }}>
@@ -130,10 +130,11 @@ export default function ProjectDetailPage({ projectId, navigateTo, openConsultat
               style={{
                 background: 'var(--color-bg-light)',
                 borderRadius: '20px',
-                border: '1px solid #E5E7EB'
+                border: '1px solid #E5E7EB',
+                boxSizing: 'border-box'
               }}
             >
-              <h3 style={{ fontSize: '1.5rem', color: '#111827', marginBottom: '1.5rem' }}>
+              <h3 style={{ fontSize: '1.5rem', color: '#111827', marginTop: 0, marginBottom: '1.5rem', lineHeight: '1.3' }}>
                 Room-by-Room Execution Details
               </h3>
 

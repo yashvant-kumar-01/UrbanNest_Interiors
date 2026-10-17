@@ -766,9 +766,28 @@ button {
   gap: 3.5rem;
 }
 
+/* Detail Overview Box Styles (Project & Service pages) */
+.room-breakdown-box,
+.service-inclusions-box {
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-sizing: border-box;
+}
+
+.room-breakdown-box h3,
+.service-inclusions-box h3 {
+  margin-top: 0;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
 @media (max-width: 1024px) {
   .contact-layout-grid {
     gap: 2rem;
+  }
+  .room-breakdown-box,
+  .service-inclusions-box {
+    padding: 2rem 1.5rem;
   }
 }
 
