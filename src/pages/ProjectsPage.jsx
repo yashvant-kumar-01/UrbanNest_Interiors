@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { PROJECTS } from '../data/content';
-import { ArrowRight, Filter, MapPin, Layers, Calendar, Sparkles } from 'lucide-react';
+import { ArrowRight, MapPin } from 'lucide-react';
 
 export default function ProjectsPage({ navigateTo, openConsultationModal }) {
   const [activeCategory, setActiveCategory] = useState('All');
@@ -14,22 +14,21 @@ export default function ProjectsPage({ navigateTo, openConsultationModal }) {
   return (
     <div>
       {/* Header Banner */}
-      <section style={{
-        background: 'linear-gradient(rgba(17,24,39,0.88), rgba(17,24,39,0.88)), url("/images/hero_interior.jpg") center/cover',
-        color: '#FFFFFF',
-        padding: '5rem 0',
-        textAlign: 'center'
-      }}>
+      <section className="page-header-section">
         <div className="container">
-          <div className="badge-tag" style={{ background: 'rgba(197, 160, 89, 0.2)', color: '#C5A059' }}>
-            Our Work
+          <div className="page-header-banner" style={{
+            backgroundImage: 'linear-gradient(rgba(17,24,39,0.88), rgba(17,24,39,0.88)), url("/images/hero_interior.jpg")'
+          }}>
+            <div className="badge-tag" style={{ background: 'rgba(197, 160, 89, 0.2)', color: '#C5A059' }}>
+              Our Work
+            </div>
+            <h1 style={{ fontSize: '3rem', color: '#FFFFFF', marginBottom: '1rem' }}>
+              Portfolio of Completed Interiors
+            </h1>
+            <p style={{ maxWidth: '700px', margin: '0 auto', fontSize: '1.1rem', color: '#D1D5DB' }}>
+              Explore real homes, luxury villas, modular kitchens, and workspaces executed across Ahmedabad.
+            </p>
           </div>
-          <h1 style={{ fontSize: '3rem', color: '#FFFFFF', marginBottom: '1rem' }}>
-            Portfolio of Completed Interiors
-          </h1>
-          <p style={{ maxWidth: '700px', margin: '0 auto', fontSize: '1.1rem', color: '#D1D5DB' }}>
-            Explore real homes, luxury villas, modular kitchens, and workspaces executed across Ahmedabad.
-          </p>
         </div>
       </section>
 
@@ -70,8 +69,22 @@ export default function ProjectsPage({ navigateTo, openConsultationModal }) {
           <div className="grid-3">
             {filteredProjects.map(proj => (
               <div key={proj.id} className="card">
-                <div className="card-img-wrapper" style={{ height: '270px' }}>
-                  <img src={proj.heroImage} alt={proj.title} className="card-img" />
+                <div 
+                  className="card-img-wrapper" 
+                  style={{ height: '270px', cursor: 'pointer' }}
+                  onClick={() => navigateTo(`#/projects/${proj.id}`)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') navigateTo(`#/projects/${proj.id}`); }}
+                  title={`View project: ${proj.title}`}
+                >
+                  <img 
+                    src={proj.heroImage} 
+                    alt={`${proj.title} - ${proj.type} interior project in ${proj.location} Ahmedabad`} 
+                    loading="lazy" 
+                    decoding="async" 
+                    className="card-img" 
+                  />
                   <span style={{
                     position: 'absolute',
                     top: '15px',
@@ -92,7 +105,13 @@ export default function ProjectsPage({ navigateTo, openConsultationModal }) {
                     <MapPin size={14} color="#C5A059" />
                     <span>{proj.location} • {proj.type}</span>
                   </div>
-                  <h3 className="card-title" style={{ fontSize: '1.4rem' }}>{proj.title}</h3>
+                  <h3 
+                    className="card-title" 
+                    style={{ fontSize: '1.4rem', cursor: 'pointer' }}
+                    onClick={() => navigateTo(`#/projects/${proj.id}`)}
+                  >
+                    {proj.title}
+                  </h3>
                   <div style={{ fontSize: '0.825rem', color: '#C5A059', fontWeight: '600', marginBottom: '0.75rem' }}>
                     Style: {proj.designStyle}
                   </div>

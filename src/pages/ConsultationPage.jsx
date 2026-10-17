@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { SERVICES } from '../data/content';
-import { Calendar, CheckCircle, ShieldCheck, Send, ArrowRight } from 'lucide-react';
+import { CheckCircle, ShieldCheck, Send } from 'lucide-react';
 
 import { processLeadSubmission } from '../utils/leadHandler';
 
@@ -46,35 +46,37 @@ export default function ConsultationPage() {
   return (
     <div>
       {/* Header Banner */}
-      <section style={{
-        background: 'linear-gradient(rgba(17,24,39,0.9), rgba(17,24,39,0.9)), url("/images/hero_interior.jpg") center/cover',
-        color: '#FFFFFF',
-        padding: '5rem 0',
-        textAlign: 'center'
-      }}>
+      <section className="page-header-section">
         <div className="container">
-          <div className="badge-tag" style={{ background: 'rgba(197, 160, 89, 0.2)', color: '#C5A059' }}>
-            Book Appointment
+          <div className="page-header-banner" style={{
+            backgroundImage: 'linear-gradient(rgba(17,24,39,0.9), rgba(17,24,39,0.9)), url("/images/hero_interior.jpg")'
+          }}>
+            <div className="badge-tag" style={{ background: 'rgba(197, 160, 89, 0.2)', color: '#C5A059' }}>
+              Book Appointment
+            </div>
+            <h1 style={{ fontSize: '3rem', color: '#FFFFFF', marginBottom: '1rem' }}>
+              Schedule a Design Consultation
+            </h1>
+            <p style={{ maxWidth: '700px', margin: '0 auto', fontSize: '1.1rem', color: '#D1D5DB' }}>
+              Meet our senior architectural team at our Prahlad Nagar studio or at your site in Ahmedabad.
+            </p>
           </div>
-          <h1 style={{ fontSize: '3rem', color: '#FFFFFF', marginBottom: '1rem' }}>
-            Schedule a Design Consultation
-          </h1>
-          <p style={{ maxWidth: '700px', margin: '0 auto', fontSize: '1.1rem', color: '#D1D5DB' }}>
-            Meet our senior architectural team at our Prahlad Nagar studio or at your site in Ahmedabad.
-          </p>
         </div>
       </section>
 
       {/* Form Container */}
       <section style={{ padding: '6rem 0', background: 'var(--color-bg-light)' }}>
         <div className="container-narrow">
-          <div style={{
-            background: '#FFFFFF',
-            padding: '3.5rem 3rem',
-            borderRadius: '24px',
-            border: '1px solid #E5E7EB',
-            boxShadow: 'var(--shadow-xl)'
-          }}>
+          <div 
+            className="consultation-form-card"
+            style={{
+              background: '#FFFFFF',
+              padding: '3.5rem 3rem',
+              borderRadius: '24px',
+              border: '1px solid #E5E7EB',
+              boxShadow: 'var(--shadow-xl)'
+            }}
+          >
             {!submitted ? (
               <form onSubmit={handleSubmit}>
                 <div style={{ marginBottom: '2rem', textAlign: 'center' }}>

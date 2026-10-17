@@ -21,28 +21,30 @@ export default function LightboxModal({ isOpen, images, currentIndex, onClose, o
         }}
         onClick={e => e.stopPropagation()}
       >
-        <button 
-          onClick={onClose}
-          style={{
-            position: 'absolute',
-            top: '-50px',
-            right: 0,
-            background: 'rgba(255,255,255,0.2)',
-            color: '#FFFFFF',
-            border: 'none',
-            width: '40px',
-            height: '40px',
-            borderRadius: '50%',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}
-        >
-          <X size={24} />
-        </button>
-
         <div style={{ position: 'relative', width: '100%', borderRadius: '12px', overflow: 'hidden', background: '#000' }}>
+          <button 
+            onClick={onClose}
+            aria-label="Close lightbox"
+            style={{
+              position: 'absolute',
+              top: '12px',
+              right: '12px',
+              zIndex: 10,
+              background: 'rgba(0,0,0,0.65)',
+              color: '#FFFFFF',
+              border: '1px solid rgba(255,255,255,0.2)',
+              width: '38px',
+              height: '38px',
+              borderRadius: '50%',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              backdropFilter: 'blur(4px)'
+            }}
+          >
+            <X size={22} />
+          </button>
           <img 
             src={images[currentIndex]} 
             alt="Interior view full screen"

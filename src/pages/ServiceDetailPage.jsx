@@ -4,10 +4,8 @@ import LightboxModal from '../components/LightboxModal';
 import { 
   CheckCircle2, 
   ArrowRight, 
-  HelpCircle, 
   ChevronDown, 
   ChevronUp, 
-  ShieldCheck, 
   Calendar,
   Sparkles,
   Maximize2
@@ -31,32 +29,54 @@ export default function ServiceDetailPage({ slug, navigateTo, openConsultationMo
 
   return (
     <div>
-      {/* Service Hero */}
-      <section style={{
-        background: `linear-gradient(rgba(17,24,39,0.85), rgba(17,24,39,0.85)), url("${service.heroImage}") center/cover`,
-        color: '#FFFFFF',
-        padding: '6rem 0 5rem 0'
-      }}>
-        <div className="container">
-          <div style={{ maxWidth: '800px' }}>
-            <div className="badge-tag" style={{ background: 'rgba(197, 160, 89, 0.2)', color: '#C5A059' }}>
-              Service Detail
-            </div>
-            <h1 style={{ fontSize: '3.2rem', color: '#FFFFFF', marginBottom: '1rem', lineHeight: '1.15' }}>
-              {service.title}
-            </h1>
-            <p style={{ fontSize: '1.2rem', color: '#D1D5DB', marginBottom: '2rem', lineHeight: '1.6' }}>
-              {service.shortDesc}
-            </p>
+      {/* Breadcrumb Navigation Bar */}
+      <nav aria-label="Breadcrumb" style={{ background: '#1F2937', padding: '0.75rem 0', color: '#D1D5DB', fontSize: '0.875rem' }}>
+        <div className="container" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+          <button 
+            onClick={() => navigateTo('#')}
+            style={{ background: 'none', border: 'none', color: '#C5A059', cursor: 'pointer', fontWeight: '600', padding: 0 }}
+          >
+            Home
+          </button>
+          <span>/</span>
+          <button 
+            onClick={() => navigateTo('#/services')}
+            style={{ background: 'none', border: 'none', color: '#C5A059', cursor: 'pointer', fontWeight: '600', padding: 0 }}
+          >
+            Services
+          </button>
+          <span>/</span>
+          <span style={{ color: '#E5E7EB' }}>{service.title}</span>
+        </div>
+      </nav>
 
-            <div style={{ display: 'flex', gap: '1.25rem', flexWrap: 'wrap' }}>
-              <button onClick={openConsultationModal} className="btn btn-primary btn-lg">
-                <Calendar size={18} />
-                <span>Book Service Consultation</span>
-              </button>
-              <button onClick={() => navigateTo('#/projects')} className="btn btn-outline-white btn-lg">
-                <span>View Real Executed Projects</span>
-              </button>
+      {/* Service Hero */}
+      <section className="page-header-section">
+        <div className="container">
+          <div className="page-header-banner" style={{
+            backgroundImage: `linear-gradient(rgba(17,24,39,0.85), rgba(17,24,39,0.85)), url("${service.heroImage}")`,
+            textAlign: 'left'
+          }}>
+            <div style={{ maxWidth: '800px' }}>
+              <div className="badge-tag" style={{ background: 'rgba(197, 160, 89, 0.2)', color: '#C5A059' }}>
+                Service Detail • Ahmedabad
+              </div>
+              <h1 style={{ fontSize: '3.2rem', color: '#FFFFFF', marginBottom: '1rem', lineHeight: '1.15' }}>
+                {service.title} in Ahmedabad
+              </h1>
+              <p style={{ fontSize: '1.2rem', color: '#D1D5DB', marginBottom: '2rem', lineHeight: '1.6' }}>
+                {service.shortDesc}
+              </p>
+
+              <div style={{ display: 'flex', gap: '1.25rem', flexWrap: 'wrap' }}>
+                <button onClick={openConsultationModal} className="btn btn-primary btn-lg">
+                  <Calendar size={18} />
+                  <span>Book Service Consultation</span>
+                </button>
+                <button onClick={() => navigateTo('#/projects')} className="btn btn-outline-white btn-lg">
+                  <span>View Real Executed Projects</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -192,7 +212,13 @@ export default function ServiceDetailPage({ slug, navigateTo, openConsultationMo
                 onClick={() => handleOpenLightbox(idx)}
               >
                 <div className="card-img-wrapper" style={{ height: '280px' }}>
-                  <img src={imgUrl} alt={`${service.title} view ${idx + 1}`} className="card-img" />
+                  <img 
+                    src={imgUrl} 
+                    alt={`${service.title} architectural design portfolio photo ${idx + 1} - UrbanNest Interiors Ahmedabad`} 
+                    loading="lazy" 
+                    decoding="async" 
+                    className="card-img" 
+                  />
                   <div style={{
                     position: 'absolute',
                     inset: 0,

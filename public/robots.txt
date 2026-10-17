@@ -1,0 +1,15 @@
+# Robots.txt for UrbanNest Interiors (Ahmedabad, Gujarat)
+# https://urbannestinteriors.com
+
+User-agent: *
+Allow: /
+Allow: /images/
+Allow: /assets/
+Disallow: /#/owner
+Disallow: /#/admin
+
+# Crawl-delay for optimal server performance
+Crawl-delay: 1
+
+# XML Sitemap location
+Sitemap: https://urbannestinteriors.com/sitemap.xml

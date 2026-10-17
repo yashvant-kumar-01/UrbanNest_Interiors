@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, CheckCircle, Calendar, Send, ShieldCheck } from 'lucide-react';
+import { X, CheckCircle, Calendar, ShieldCheck } from 'lucide-react';
 import { SERVICES } from '../data/content';
 
 import { processLeadSubmission } from '../utils/leadHandler';

@@ -16,33 +16,78 @@ import BlogPage from './pages/BlogPage';
 import BlogDetailPage from './pages/BlogDetailPage';
 import ContactPage from './pages/ContactPage';
 import ConsultationPage from './pages/ConsultationPage';
+import { updateRouteSEO } from './utils/seoHelper';
+
+function getNormalizedRoute(hash) {
+  if (!hash || hash === '#' || hash === '#/' || hash === '/' || hash === '#home') {
+    return '#';
+  }
+  return hash;
+}
 
 export default function App() {
-  const [currentRoute, setCurrentRoute] = useState(window.location.hash || '#');
+  const [currentRoute, setCurrentRoute] = useState(() => getNormalizedRoute(window.location.hash));
   const [isConsultationModalOpen, setIsConsultationModalOpen] = useState(false);
-  const [isOwnerModalOpen, setIsOwnerModalOpen] = useState(false);
+  const [isOwnerModalOpen, setIsOwnerModalOpen] = useState(
+    () => window.location.hash === '#/owner' || window.location.hash === '#/admin'
+  );
 
   useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash || '#';
-      setCurrentRoute(hash);
-      if (hash === '#/owner' || hash === '#/admin') {
+    // If initially landed on a home hash (#, #/, #home), strip it to provide a clean root URL
+    const initialHash = window.location.hash;
+    if (initialHash === '#' || initialHash === '#/' || initialHash === '#home') {
+      if (window.history.replaceState) {
+        window.history.replaceState(null, '', window.location.pathname + window.location.search);
+      }
+    }
+
+    // Initial SEO update with normalized home metadata
+    updateRouteSEO(getNormalizedRoute(window.location.hash));
+
+    const handleLocationChange = () => {
+      const hash = window.location.hash;
+      const normalized = getNormalizedRoute(hash);
+
+      setCurrentRoute(normalized);
+      updateRouteSEO(normalized);
+
+      // Keep address bar clean when on homepage
+      if (normalized === '#' && window.location.hash) {
+        if (window.history.replaceState) {
+          window.history.replaceState(null, '', window.location.pathname + window.location.search);
+        }
+      }
+
+      if (normalized === '#/owner' || normalized === '#/admin') {
         setIsOwnerModalOpen(true);
       }
       window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
-    if (window.location.hash === '#/owner' || window.location.hash === '#/admin') {
-      setIsOwnerModalOpen(true);
-    }
-
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    window.addEventListener('hashchange', handleLocationChange);
+    window.addEventListener('popstate', handleLocationChange);
+    return () => {
+      window.removeEventListener('hashchange', handleLocationChange);
+      window.removeEventListener('popstate', handleLocationChange);
+    };
   }, []);
 
   const navigateTo = (route) => {
-    window.location.hash = route;
-    setCurrentRoute(route);
+    const isHome = !route || route === '#' || route === '#/' || route === '/' || route === '' || route === '#home';
+    if (isHome) {
+      setCurrentRoute('#');
+      updateRouteSEO('#');
+      if (window.location.hash) {
+        if (window.history.pushState) {
+          window.history.pushState(null, '', window.location.pathname + window.location.search);
+        } else {
+          window.location.hash = '';
+        }
+      }
+    } else {
+      window.location.hash = route;
+      setCurrentRoute(route);
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -55,7 +100,7 @@ export default function App() {
   const renderContent = () => {
     const route = currentRoute;
 
-    if (route === '#' || route === '#/' || route === '') {
+    if (route === '#' || route === '#/' || route === '' || route === '/' || route === '#home') {
       return <HomePage navigateTo={navigateTo} openConsultationModal={openConsultationModal} />;
     }
     if (route === '#/about') {
@@ -129,4 +174,3 @@ export default function App() {
     </div>
   );
 }
-

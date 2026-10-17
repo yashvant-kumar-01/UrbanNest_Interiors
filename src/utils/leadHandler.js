@@ -78,7 +78,7 @@ ${leadEntry.projectDescription ? '💬 *Details:* ' + leadEntry.projectDescripti
 export function getSavedLeads() {
   try {
     return JSON.parse(localStorage.getItem('urbannest_leads') || '[]');
-  } catch (e) {
+  } catch {
     return [];
   }
 }
@@ -117,7 +117,7 @@ export function exportLeadsToCSV() {
 export function getOwnerPIN() {
   try {
     return localStorage.getItem('urbannest_owner_pin') || '1234';
-  } catch (e) {
+  } catch {
     return '1234';
   }
 }
@@ -127,7 +127,7 @@ export function setOwnerPIN(newPin) {
   try {
     localStorage.setItem('urbannest_owner_pin', String(newPin).trim());
     return true;
-  } catch (e) {
+  } catch {
     return false;
   }
 }
@@ -143,7 +143,7 @@ export function clearSavedLeads() {
   try {
     localStorage.removeItem('urbannest_leads');
     return true;
-  } catch (e) {
+  } catch {
     return false;
   }
 }

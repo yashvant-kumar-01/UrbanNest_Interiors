@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { COMPANY_INFO } from '../data/content';
 import { 
-  Phone, 
-  Mail, 
-  MapPin, 
   Menu, 
   X, 
   Compass, 
@@ -24,14 +20,14 @@ export default function Header({ currentRoute, navigateTo, openConsultationModal
   }, []);
 
   const navLinks = [
-    { label: 'Home', route: '#' },
-    { label: 'About', route: '#/about' },
-    { label: 'Services', route: '#/services' },
-    { label: 'Projects', route: '#/projects' },
-    { label: 'Process', route: '#/process' },
-    { label: 'Testimonials', route: '#/testimonials' },
-    { label: 'Blog', route: '#/blog' },
-    { label: 'Contact', route: '#/contact' },
+    { label: 'Home', route: '#', href: '/' },
+    { label: 'About', route: '#/about', href: '#/about' },
+    { label: 'Services', route: '#/services', href: '#/services' },
+    { label: 'Projects', route: '#/projects', href: '#/projects' },
+    { label: 'Process', route: '#/process', href: '#/process' },
+    { label: 'Testimonials', route: '#/testimonials', href: '#/testimonials' },
+    { label: 'Blog', route: '#/blog', href: '#/blog' },
+    { label: 'Contact', route: '#/contact', href: '#/contact' },
   ];
 
   const handleNavClick = (route) => {
@@ -45,9 +41,10 @@ export default function Header({ currentRoute, navigateTo, openConsultationModal
       <header className={`navbar ${scrolled ? 'scrolled' : ''}`}>
         <div className="container nav-container">
           <a 
-            href="#" 
+            href="/" 
             onClick={(e) => { e.preventDefault(); handleNavClick('#'); }} 
             className="brand-logo"
+            title="UrbanNest Interiors - Best Interior Designers in Ahmedabad"
           >
             <div className="logo-icon">
               <Compass size={24} />
@@ -62,12 +59,13 @@ export default function Header({ currentRoute, navigateTo, openConsultationModal
               return (
                 <li key={item.label}>
                   <a
-                    href={item.route}
+                    href={item.href || item.route}
                     onClick={(e) => {
                       e.preventDefault();
                       handleNavClick(item.route);
                     }}
                     className={`nav-link ${isActive ? 'active' : ''}`}
+                    title={item.label === 'Home' ? 'UrbanNest Interiors Home' : item.label}
                   >
                     {item.label}
                   </a>
@@ -76,14 +74,15 @@ export default function Header({ currentRoute, navigateTo, openConsultationModal
             })}
           </ul>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <div className="header-actions">
             <button 
               onClick={openConsultationModal}
               className="btn btn-primary btn-sm header-cta-btn"
-              style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}
+              title="Book a Consultation"
             >
               <Calendar size={16} />
-              <span>Book a Consultation</span>
+              <span className="header-cta-text-full">Book a Consultation</span>
+              <span className="header-cta-text-short">Book</span>
             </button>
 
             <button
@@ -126,7 +125,7 @@ export default function Header({ currentRoute, navigateTo, openConsultationModal
             return (
               <li key={item.label}>
                 <a
-                  href={item.route}
+                  href={item.href || item.route}
                   onClick={(e) => {
                     e.preventDefault();
                     handleNavClick(item.route);

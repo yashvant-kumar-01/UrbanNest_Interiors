@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { X, Lock, Key, Download, Trash2, Eye, EyeOff, ShieldCheck, UserCheck, RefreshCw } from 'lucide-react';
+import React, { useState } from 'react';
+import { X, Lock, Key, Download, Trash2, Eye, EyeOff, ShieldCheck, UserCheck } from 'lucide-react';
 import { 
   getSavedLeads, 
   exportLeadsToCSV, 
   verifyOwnerPIN, 
   setOwnerPIN, 
-  getOwnerPIN,
   clearSavedLeads 
 } from '../utils/leadHandler';
 
@@ -14,18 +13,12 @@ export default function OwnerModal({ isOpen, onClose }) {
   const [showPin, setShowPin] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
-  const [leads, setLeads] = useState([]);
+  const [leads, setLeads] = useState(() => getSavedLeads());
   
   // PIN change state
   const [isChangingPin, setIsChangingPin] = useState(false);
   const [newPin, setNewPin] = useState('');
   const [pinSuccessMsg, setPinSuccessMsg] = useState('');
-
-  useEffect(() => {
-    if (isOpen && isAuthenticated) {
-      setLeads(getSavedLeads());
-    }
-  }, [isOpen, isAuthenticated]);
 
   if (!isOpen) return null;
 
@@ -273,8 +266,8 @@ export default function OwnerModal({ isOpen, onClose }) {
                 </p>
               </div>
             ) : (
-              <div style={{ maxHeight: '280px', overflowY: 'auto', border: '1px solid #E2E8F0', borderRadius: '8px' }}>
-                <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.85rem' }}>
+              <div style={{ maxHeight: '280px', overflowY: 'auto', overflowX: 'auto', border: '1px solid #E2E8F0', borderRadius: '8px', WebkitOverflowScrolling: 'touch' }}>
+                <table style={{ width: '100%', minWidth: '520px', borderCollapse: 'collapse', fontSize: '0.85rem' }}>
                   <thead>
                     <tr style={{ background: '#F1F5F9', borderBottom: '1px solid #E2E8F0', textAlign: 'left' }}>
                       <th style={{ padding: '8px 12px' }}>Ref ID</th>

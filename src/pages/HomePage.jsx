@@ -13,7 +13,6 @@ import {
   CheckCircle2, 
   Star, 
   MapPin, 
-  Compass, 
   UserCheck, 
   Layout, 
   ShieldCheck, 
@@ -47,53 +46,55 @@ export default function HomePage({ navigateTo, openConsultationModal }) {
   return (
     <div>
       {/* 1. HERO SECTION */}
-      <section className="hero">
+      <section className="hero-section">
         <div className="container">
-          <div className="hero-content">
-            <div className="hero-trust">
-              <MapPin size={16} color="#C5A059" />
-              <span>{COMPANY_INFO.trustStatement}</span>
-            </div>
+          <div className="hero">
+            <div className="hero-content">
+              <div className="hero-trust">
+                <MapPin size={16} color="#C5A059" />
+                <span>{COMPANY_INFO.trustStatement}</span>
+              </div>
 
-            <h1 className="hero-title">
-              Beautiful Spaces, Designed Around You.
-            </h1>
+              <h1 className="hero-title">
+                Beautiful Spaces, Designed Around You.
+              </h1>
 
-            <p className="hero-subtitle">
-              {COMPANY_INFO.subTagline} We transform apartments, villas, and commercial offices into timeless, functional sanctuaries across Ahmedabad.
-            </p>
+              <p className="hero-subtitle">
+                {COMPANY_INFO.subTagline} We build thoughtfully planned apartments, villas, and workspaces designed around how your family actually lives, cooks, and rests in Ahmedabad.
+              </p>
 
-            <div className="hero-buttons">
-              <button 
-                onClick={() => navigateTo('#/projects')} 
-                className="btn btn-primary btn-lg"
-              >
-                <span>Explore Our Projects</span>
-                <ArrowRight size={18} />
-              </button>
+              <div className="hero-buttons">
+                <button 
+                  onClick={() => navigateTo('#/projects')} 
+                  className="btn btn-primary btn-lg"
+                >
+                  <span>Explore Our Projects</span>
+                  <ArrowRight size={18} />
+                </button>
 
-              <button 
-                onClick={openConsultationModal} 
-                className="btn btn-outline-white btn-lg"
-              >
-                <span>Book a Consultation</span>
-              </button>
-            </div>
+                <button 
+                  onClick={openConsultationModal} 
+                  className="btn btn-outline-white btn-lg"
+                >
+                  <span>Book a Consultation</span>
+                </button>
+              </div>
 
-            {/* Quick Stats Bar in Hero */}
-            <div style={{
-              display: 'flex',
-              gap: '2.5rem',
-              borderTop: '1px solid rgba(255,255,255,0.15)',
-              paddingTop: '1.5rem',
-              flexWrap: 'wrap'
-            }}>
-              {COMPANY_INFO.stats.slice(0, 3).map((st) => (
-                <div key={st.label}>
-                  <div style={{ fontSize: '1.8rem', fontWeight: '800', color: '#C5A059' }}>{st.value}</div>
-                  <div style={{ fontSize: '0.85rem', color: '#D1D5DB' }}>{st.label}</div>
-                </div>
-              ))}
+              {/* Quick Stats Bar in Hero */}
+              <div style={{
+                display: 'flex',
+                gap: '2.5rem',
+                borderTop: '1px solid rgba(255,255,255,0.15)',
+                paddingTop: '1.5rem',
+                flexWrap: 'wrap'
+              }}>
+                {COMPANY_INFO.stats.slice(0, 3).map((st) => (
+                  <div key={st.label}>
+                    <div style={{ fontSize: '1.8rem', fontWeight: '800', color: '#C5A059' }}>{st.value}</div>
+                    <div style={{ fontSize: '0.85rem', color: '#D1D5DB' }}>{st.label}</div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -109,13 +110,13 @@ export default function HomePage({ navigateTo, openConsultationModal }) {
                 We Design Spaces That Feel Like Home
               </h2>
               <p style={{ fontSize: '1.05rem', lineHeight: '1.7', color: '#4B5563', marginBottom: '1.25rem' }}>
-                At UrbanNest Interiors, we believe that an interior design project is much more than selecting furniture or paint colors. It is about creating a personalized ecosystem that elevates your daily lifestyle, reflects your unique taste, and optimizes every inch of your space.
+                At UrbanNest Interiors, we believe a home isn't an art gallery—it's where your morning chai begins and where you unwind at the end of a long day. It should be comfortable, easy to keep clean, and thoughtfully planned for the way your family actually lives.
               </p>
               <p style={{ fontSize: '1.05rem', lineHeight: '1.7', color: '#4B5563', marginBottom: '2rem' }}>
-                Based in Prahlad Nagar, Ahmedabad, our multi-disciplinary team of CEPT and NID-trained architects and interior designers takes complete turnkey responsibility—from initial 3D visualization and civil alterations to factory wood fabrication and key handover.
+                Based in Prahlad Nagar, Ahmedabad, our team of architects and interior designers takes complete turnkey responsibility—from 3D visualization and civil adjustments to factory-precision modular joinery and final key handover on a committed timeline.
               </p>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '2rem' }}>
+              <div className="intro-checks-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '2rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontWeight: '600' }}>
                   <CheckCircle2 size={20} color="#C5A059" /> 100% Custom Tailored Designs
                 </div>
@@ -139,8 +140,8 @@ export default function HomePage({ navigateTo, openConsultationModal }) {
               </button>
             </div>
 
-            <div style={{ position: 'relative' }}>
-              <div style={{
+            <div className="intro-img-container" style={{ position: 'relative' }}>
+              <div className="intro-img-box" style={{
                 borderRadius: '20px',
                 overflow: 'hidden',
                 boxShadow: 'var(--shadow-xl)',
@@ -148,11 +149,13 @@ export default function HomePage({ navigateTo, openConsultationModal }) {
               }}>
                 <img 
                   src="/images/hero_interior.jpg" 
-                  alt="Modern Indian living room design in Ahmedabad"
+                  alt="Modern luxury living room interior design project by UrbanNest Interiors Ahmedabad"
+                  loading="lazy"
+                  decoding="async"
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
               </div>
-              <div style={{
+              <div className="intro-badge-floater" style={{
                 position: 'absolute',
                 bottom: '-25px',
                 left: '-25px',
@@ -163,7 +166,7 @@ export default function HomePage({ navigateTo, openConsultationModal }) {
                 boxShadow: 'var(--shadow-lg)',
                 maxWidth: '260px'
               }}>
-                <div style={{ fontSize: '2.2rem', fontWeight: '800', color: '#C5A059' }}>8+ Years</div>
+                <div style={{ fontSize: '2.2rem', fontWeight: '800', color: '#C5A059' }}>2+ Years</div>
                 <div style={{ fontSize: '0.875rem', color: '#D1D5DB' }}>Crafting Luxury Homes in Gujarat</div>
               </div>
             </div>
@@ -185,11 +188,28 @@ export default function HomePage({ navigateTo, openConsultationModal }) {
           <div className="grid-3">
             {SERVICES.map((s) => (
               <div key={s.id} className="card">
-                <div className="card-img-wrapper">
-                  <img src={s.heroImage} alt={s.title} className="card-img" />
+                <div 
+                  className="card-img-wrapper"
+                  onClick={() => navigateTo(`#/services/${s.slug}`)}
+                  style={{ cursor: 'pointer' }}
+                  title={`View ${s.title}`}
+                >
+                  <img 
+                    src={s.heroImage} 
+                    alt={`${s.title} in Ahmedabad - UrbanNest Interiors`} 
+                    loading="lazy"
+                    decoding="async"
+                    className="card-img" 
+                  />
                 </div>
                 <div className="card-body">
-                  <h3 className="card-title">{s.title}</h3>
+                  <h3 
+                    className="card-title"
+                    onClick={() => navigateTo(`#/services/${s.slug}`)}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    {s.title}
+                  </h3>
                   <p className="card-text">{s.shortDesc}</p>
                   <button
                     onClick={() => navigateTo(`#/services/${s.slug}`)}
@@ -275,8 +295,19 @@ export default function HomePage({ navigateTo, openConsultationModal }) {
           <div className="grid-3">
             {PROJECTS.slice(0, 3).map((proj) => (
               <div key={proj.id} className="card">
-                <div className="card-img-wrapper" style={{ height: '260px' }}>
-                  <img src={proj.heroImage} alt={proj.title} className="card-img" />
+                <div 
+                  className="card-img-wrapper" 
+                  onClick={() => navigateTo(`#/projects/${proj.id}`)}
+                  style={{ height: '260px', cursor: 'pointer' }}
+                  title={`View ${proj.title} project`}
+                >
+                  <img 
+                    src={proj.heroImage} 
+                    alt={`${proj.title} - ${proj.category} interior design in ${proj.location}`} 
+                    loading="lazy"
+                    decoding="async"
+                    className="card-img" 
+                  />
                   <span style={{
                     position: 'absolute',
                     top: '15px',
@@ -296,7 +327,13 @@ export default function HomePage({ navigateTo, openConsultationModal }) {
                   <div style={{ fontSize: '0.85rem', color: '#9CA3AF', marginBottom: '0.25rem' }}>
                     {proj.location} • {proj.type}
                   </div>
-                  <h3 className="card-title">{proj.title}</h3>
+                  <h3 
+                    className="card-title"
+                    onClick={() => navigateTo(`#/projects/${proj.id}`)}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    {proj.title}
+                  </h3>
                   <p className="card-text">{proj.overview.substring(0, 110)}...</p>
                   <button
                     onClick={() => navigateTo(`#/projects/${proj.id}`)}
@@ -396,7 +433,13 @@ export default function HomePage({ navigateTo, openConsultationModal }) {
                   <p className="testimonial-text">"{t.comment}"</p>
                 </div>
                 <div className="testimonial-author">
-                  <img src={t.avatar} alt={t.name} className="author-avatar" />
+                  <img 
+                    src={t.avatar} 
+                    alt={`Client review - ${t.name}, interior design client in ${t.location}`} 
+                    loading="lazy"
+                    decoding="async"
+                    className="author-avatar" 
+                  />
                   <div>
                     <div className="author-name">{t.name}</div>
                     <div className="author-meta">{t.project} • {t.location}</div>

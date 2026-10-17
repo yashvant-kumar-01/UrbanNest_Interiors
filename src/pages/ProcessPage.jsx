@@ -1,19 +1,7 @@
 import React from 'react';
-import { PROCESS_STEPS } from '../data/content';
-import { 
-  Coffee, 
-  Ruler, 
-  Monitor, 
-  Layers, 
-  Hammer, 
-  Key, 
-  ShieldCheck, 
-  CheckCircle2, 
-  ArrowRight,
-  Clock
-} from 'lucide-react';
+import { ArrowRight, Clock } from 'lucide-react';
 
-export default function ProcessPage({ navigateTo, openConsultationModal }) {
+export default function ProcessPage({ openConsultationModal }) {
   const extendedSteps = [
     {
       step: "01",
@@ -68,22 +56,21 @@ export default function ProcessPage({ navigateTo, openConsultationModal }) {
   return (
     <div>
       {/* Header Banner */}
-      <section style={{
-        background: 'linear-gradient(rgba(17,24,39,0.88), rgba(17,24,39,0.88)), url("/images/hero_interior.jpg") center/cover',
-        color: '#FFFFFF',
-        padding: '5rem 0',
-        textAlign: 'center'
-      }}>
+      <section className="page-header-section">
         <div className="container">
-          <div className="badge-tag" style={{ background: 'rgba(197, 160, 89, 0.2)', color: '#C5A059' }}>
-            Structured Workflow
+          <div className="page-header-banner" style={{
+            backgroundImage: 'linear-gradient(rgba(17,24,39,0.88), rgba(17,24,39,0.88)), url("/images/hero_interior.jpg")'
+          }}>
+            <div className="badge-tag" style={{ background: 'rgba(197, 160, 89, 0.2)', color: '#C5A059' }}>
+              Structured Workflow
+            </div>
+            <h1 style={{ fontSize: '3rem', color: '#FFFFFF', marginBottom: '1rem' }}>
+              Our 8-Step Interior Design Journey
+            </h1>
+            <p style={{ maxWidth: '700px', margin: '0 auto', fontSize: '1.1rem', color: '#D1D5DB' }}>
+              How we turn raw floor plans into beautifully finished living spaces with guaranteed timelines.
+            </p>
           </div>
-          <h1 style={{ fontSize: '3rem', color: '#FFFFFF', marginBottom: '1rem' }}>
-            Our 8-Step Interior Design Journey
-          </h1>
-          <p style={{ maxWidth: '700px', margin: '0 auto', fontSize: '1.1rem', color: '#D1D5DB' }}>
-            How we turn raw floor plans into beautifully finished living spaces with guaranteed timelines.
-          </p>
         </div>
       </section>
 
@@ -91,9 +78,10 @@ export default function ProcessPage({ navigateTo, openConsultationModal }) {
       <section style={{ padding: '6rem 0', background: 'var(--color-bg-light)' }}>
         <div className="container-narrow">
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-            {extendedSteps.map((st, idx) => (
+            {extendedSteps.map((st) => (
               <div 
                 key={st.step}
+                className="process-step-item"
                 style={{
                   background: '#FFFFFF',
                   padding: '2rem',
@@ -105,26 +93,29 @@ export default function ProcessPage({ navigateTo, openConsultationModal }) {
                   boxShadow: 'var(--shadow-sm)'
                 }}
               >
-                <div style={{
-                  width: '64px',
-                  height: '64px',
-                  borderRadius: '16px',
-                  background: 'var(--color-dark)',
-                  color: '#C5A059',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '1.5rem',
-                  fontWeight: '800',
-                  flexShrink: 0
-                }}>
+                <div 
+                  className="process-step-badge"
+                  style={{
+                    width: '64px',
+                    height: '64px',
+                    borderRadius: '16px',
+                    background: 'var(--color-dark)',
+                    color: '#C5A059',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '1.5rem',
+                    fontWeight: '800',
+                    flexShrink: 0
+                  }}
+                >
                   {st.step}
                 </div>
 
-                <div style={{ flexGrow: 1 }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
+                <div style={{ flexGrow: 1, minWidth: 0 }}>
+                  <div className="process-step-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem', flexWrap: 'wrap', gap: '0.5rem' }}>
                     <h3 style={{ fontSize: '1.35rem', color: '#111827' }}>{st.title}</h3>
-                    <span style={{ fontSize: '0.8rem', fontWeight: '700', color: '#C5A059', background: 'rgba(197, 160, 89, 0.12)', padding: '0.3rem 0.75rem', borderRadius: '50px' }}>
+                    <span style={{ fontSize: '0.8rem', fontWeight: '700', color: '#C5A059', background: 'rgba(197, 160, 89, 0.12)', padding: '0.3rem 0.75rem', borderRadius: '50px', whiteSpace: 'nowrap' }}>
                       <Clock size={12} style={{ display: 'inline', marginRight: '4px' }} />
                       {st.duration}
                     </span>

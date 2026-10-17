@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { BLOG_POSTS } from '../data/content';
-import { ArrowRight, Clock, User, Calendar, Tag } from 'lucide-react';
+import { ArrowRight, Clock, Calendar, ExternalLink, Globe } from 'lucide-react';
 
-export default function BlogPage({ navigateTo, openConsultationModal }) {
+export default function BlogPage({ navigateTo }) {
   const [selectedCat, setSelectedCat] = useState('All');
 
   const categories = ['All', 'Living Room', 'Kitchen', 'Bedroom', 'Design Tips'];
@@ -11,25 +11,33 @@ export default function BlogPage({ navigateTo, openConsultationModal }) {
     ? BLOG_POSTS 
     : BLOG_POSTS.filter(b => b.category.toLowerCase() === selectedCat.toLowerCase());
 
+  const industryAuthorities = [
+    { name: 'Architectural Digest India', url: 'https://www.architecturaldigest.in/' },
+    { name: 'Houzz India', url: 'https://www.houzz.in/' },
+    { name: 'ArchDaily', url: 'https://www.archdaily.com/' },
+    { name: 'Blum Hardware Systems', url: 'https://www.blum.com/in/en/' },
+    { name: 'Pantone Color Institute', url: 'https://www.pantone.com/' },
+    { name: 'Bureau of Indian Standards', url: 'https://www.bis.gov.in/' }
+  ];
+
   return (
     <div>
       {/* Header Banner */}
-      <section style={{
-        background: 'linear-gradient(rgba(17,24,39,0.88), rgba(17,24,39,0.88)), url("/images/hero_interior.jpg") center/cover',
-        color: '#FFFFFF',
-        padding: '5rem 0',
-        textAlign: 'center'
-      }}>
+      <section className="page-header-section">
         <div className="container">
-          <div className="badge-tag" style={{ background: 'rgba(197, 160, 89, 0.2)', color: '#C5A059' }}>
-            Design Insights
+          <div className="page-header-banner" style={{
+            backgroundImage: 'linear-gradient(rgba(17,24,39,0.88), rgba(17,24,39,0.88)), url("/images/hero_interior.jpg")'
+          }}>
+            <div className="badge-tag" style={{ background: 'rgba(197, 160, 89, 0.2)', color: '#C5A059' }}>
+              Design Insights
+            </div>
+            <h1 style={{ fontSize: '3rem', color: '#FFFFFF', marginBottom: '1rem' }}>
+              Interior Design Journal & Ideas
+            </h1>
+            <p style={{ maxWidth: '700px', margin: '0 auto', fontSize: '1.1rem', color: '#D1D5DB' }}>
+              Honest guides, realistic floor-planning tricks, and material lessons learned from designing homes across Ahmedabad.
+            </p>
           </div>
-          <h1 style={{ fontSize: '3rem', color: '#FFFFFF', marginBottom: '1rem' }}>
-            Interior Design Journal & Ideas
-          </h1>
-          <p style={{ maxWidth: '700px', margin: '0 auto', fontSize: '1.1rem', color: '#D1D5DB' }}>
-            Expert advice, trends, material guides, and space optimization tips for Indian homes.
-          </p>
         </div>
       </section>
 
@@ -61,8 +69,22 @@ export default function BlogPage({ navigateTo, openConsultationModal }) {
           <div className="grid-3">
             {filteredPosts.map(post => (
               <div key={post.id} className="card">
-                <div className="card-img-wrapper" style={{ height: '220px' }}>
-                  <img src={post.mainImage} alt={post.title} className="card-img" />
+                <div 
+                  className="card-img-wrapper" 
+                  style={{ height: '220px', cursor: 'pointer' }}
+                  onClick={() => navigateTo(`#/blog/${post.slug}`)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') navigateTo(`#/blog/${post.slug}`); }}
+                  title={`Read: ${post.title}`}
+                >
+                  <img 
+                    src={post.mainImage} 
+                    alt={`${post.title} - Interior Design Ideas Ahmedabad`} 
+                    loading="lazy" 
+                    decoding="async" 
+                    className="card-img" 
+                  />
                   <span style={{
                     position: 'absolute',
                     top: '15px',
@@ -78,15 +100,30 @@ export default function BlogPage({ navigateTo, openConsultationModal }) {
                   </span>
                 </div>
                 <div className="card-body">
-                  <div style={{ display: 'flex', gap: '1rem', fontSize: '0.8rem', color: '#9CA3AF', marginBottom: '0.5rem' }}>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                      <Calendar size={12} /> {post.date}
-                    </span>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                      <Clock size={12} /> {post.readTime}
-                    </span>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.8rem', color: '#9CA3AF', marginBottom: '0.6rem' }}>
+                    <div style={{ display: 'flex', gap: '0.75rem' }}>
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                        <Calendar size={12} /> {post.date}
+                      </span>
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                        <Clock size={12} /> {post.readTime}
+                      </span>
+                    </div>
+
+                    {post.externalResources && post.externalResources.length > 0 && (
+                      <span className="card-external-tag" title="Includes curated external industry references">
+                        <ExternalLink size={11} /> {post.externalResources.length} References
+                      </span>
+                    )}
                   </div>
-                  <h3 className="card-title" style={{ fontSize: '1.25rem' }}>{post.title}</h3>
+
+                  <h3 
+                    className="card-title" 
+                    style={{ fontSize: '1.25rem', cursor: 'pointer' }}
+                    onClick={() => navigateTo(`#/blog/${post.slug}`)}
+                  >
+                    {post.title}
+                  </h3>
                   <p className="card-text">{post.excerpt}</p>
 
                   <button
@@ -100,6 +137,33 @@ export default function BlogPage({ navigateTo, openConsultationModal }) {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Trusted External Design Authorities Bar */}
+          <div className="blog-partners-bar">
+            <div>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#C5A059', fontWeight: '700', fontSize: '0.85rem' }}>
+                <Globe size={16} /> Trusted Publications & Technical Standards
+              </span>
+              <p style={{ margin: '0.25rem 0 0 0', color: '#6B7280', fontSize: '0.875rem' }}>
+                Practical advice informed by real hardware engineering, Indian building guidelines, and design research:
+              </p>
+            </div>
+            <div className="partner-pills">
+              {industryAuthorities.map((auth, idx) => (
+                <a
+                  key={idx}
+                  href={auth.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="partner-pill"
+                  title={`Open ${auth.name} website (external link)`}
+                >
+                  <span>{auth.name}</span>
+                  <ExternalLink size={12} />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </section>

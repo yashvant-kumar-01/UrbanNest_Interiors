@@ -6,22 +6,21 @@ export default function ServicesPage({ navigateTo, openConsultationModal }) {
   return (
     <div>
       {/* Header Banner */}
-      <section style={{
-        background: 'linear-gradient(rgba(17,24,39,0.85), rgba(17,24,39,0.85)), url("/images/modular_kitchen.jpg") center/cover',
-        color: '#FFFFFF',
-        padding: '5rem 0',
-        textAlign: 'center'
-      }}>
+      <section className="page-header-section">
         <div className="container">
-          <div className="badge-tag" style={{ background: 'rgba(197, 160, 89, 0.2)', color: '#C5A059' }}>
-            Our Offerings
+          <div className="page-header-banner" style={{
+            backgroundImage: 'linear-gradient(rgba(17,24,39,0.85), rgba(17,24,39,0.85)), url("/images/modular_kitchen.jpg")'
+          }}>
+            <div className="badge-tag" style={{ background: 'rgba(197, 160, 89, 0.2)', color: '#C5A059' }}>
+              Our Offerings
+            </div>
+            <h1 style={{ fontSize: '3rem', color: '#FFFFFF', marginBottom: '1rem' }}>
+              Comprehensive Interior Design Services
+            </h1>
+            <p style={{ maxWidth: '700px', margin: '0 auto', fontSize: '1.1rem', color: '#D1D5DB' }}>
+              From full turnkey home transformations to specialized modular kitchens and executive offices in Ahmedabad.
+            </p>
           </div>
-          <h1 style={{ fontSize: '3rem', color: '#FFFFFF', marginBottom: '1rem' }}>
-            Comprehensive Interior Design Services
-          </h1>
-          <p style={{ maxWidth: '700px', margin: '0 auto', fontSize: '1.1rem', color: '#D1D5DB' }}>
-            From full turnkey home transformations to specialized modular kitchens and executive offices in Ahmedabad.
-          </p>
         </div>
       </section>
 
@@ -34,37 +33,24 @@ export default function ServicesPage({ navigateTo, openConsultationModal }) {
               return (
                 <div 
                   key={s.id} 
-                  style={{
-                    background: '#FFFFFF',
-                    borderRadius: '20px',
-                    border: '1px solid #E5E7EB',
-                    overflow: 'hidden',
-                    boxShadow: 'var(--shadow-md)',
-                    display: 'grid',
-                    gridTemplateColumns: '1fr 1fr',
-                    gap: 0
-                  }}
-                  className="service-overview-card"
+                  className={`service-overview-card ${isEven ? 'even' : 'odd'}`}
                 >
-                  <div style={{
-                    order: isEven ? 1 : 2,
-                    position: 'relative',
-                    minHeight: '380px'
-                  }}>
+                  <div 
+                    className="service-card-img-wrap"
+                    onClick={() => navigateTo(`#/services/${s.slug}`)}
+                    style={{ cursor: 'pointer' }}
+                    title={`View ${s.title} in detail`}
+                  >
                     <img 
                       src={s.heroImage} 
-                      alt={s.title} 
+                      alt={`${s.title} interior design in Ahmedabad - UrbanNest Interiors`} 
+                      loading="lazy"
+                      decoding="async"
                       style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                     />
                   </div>
 
-                  <div style={{
-                    order: isEven ? 2 : 1,
-                    padding: '3rem 2.5rem',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center'
-                  }}>
+                  <div className="service-card-content">
                     <div style={{ fontSize: '0.85rem', fontWeight: '700', color: '#C5A059', textTransform: 'uppercase', tracking: '0.05em', marginBottom: '0.5rem' }}>
                       Service 0{idx + 1}
                     </div>

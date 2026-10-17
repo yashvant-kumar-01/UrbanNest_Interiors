@@ -6,8 +6,7 @@ import {
   Mail, 
   Clock, 
   Send, 
-  CheckCircle, 
-  ShieldCheck 
+  CheckCircle 
 } from 'lucide-react';
 
 import { processLeadSubmission } from '../utils/leadHandler';
@@ -50,29 +49,28 @@ export default function ContactPage() {
   return (
     <div>
       {/* Header Banner */}
-      <section style={{
-        background: 'linear-gradient(rgba(17,24,39,0.88), rgba(17,24,39,0.88)), url("/images/hero_interior.jpg") center/cover',
-        color: '#FFFFFF',
-        padding: '5rem 0',
-        textAlign: 'center'
-      }}>
+      <section className="page-header-section">
         <div className="container">
-          <div className="badge-tag" style={{ background: 'rgba(197, 160, 89, 0.2)', color: '#C5A059' }}>
-            Get In Touch
+          <div className="page-header-banner" style={{
+            backgroundImage: 'linear-gradient(rgba(17,24,39,0.88), rgba(17,24,39,0.88)), url("/images/hero_interior.jpg")'
+          }}>
+            <div className="badge-tag" style={{ background: 'rgba(197, 160, 89, 0.2)', color: '#C5A059' }}>
+              Get In Touch
+            </div>
+            <h1 style={{ fontSize: '3rem', color: '#FFFFFF', marginBottom: '1rem' }}>
+              Contact UrbanNest Interiors
+            </h1>
+            <p style={{ maxWidth: '700px', margin: '0 auto', fontSize: '1.1rem', color: '#D1D5DB' }}>
+              Visit our interior studio in Prahlad Nagar, Ahmedabad or send us a message to schedule a site measurement.
+            </p>
           </div>
-          <h1 style={{ fontSize: '3rem', color: '#FFFFFF', marginBottom: '1rem' }}>
-            Contact UrbanNest Interiors
-          </h1>
-          <p style={{ maxWidth: '700px', margin: '0 auto', fontSize: '1.1rem', color: '#D1D5DB' }}>
-            Visit our interior studio in Prahlad Nagar, Ahmedabad or send us a message to schedule a site measurement.
-          </p>
         </div>
       </section>
 
       {/* Main Contact Section */}
       <section style={{ padding: '6rem 0', background: '#FFFFFF' }}>
         <div className="container">
-          <div className="grid-2" style={{ gap: '4rem', alignItems: 'flex-start' }}>
+          <div className="grid-2 contact-layout-grid" style={{ alignItems: 'flex-start' }}>
             {/* Left: Contact Details */}
             <div>
               <div className="badge-tag">Studio Information</div>
@@ -171,13 +169,16 @@ export default function ContactPage() {
             </div>
 
             {/* Right: Contact Form */}
-            <div style={{
-              background: '#FFFFFF',
-              padding: '3rem 2.5rem',
-              borderRadius: '20px',
-              border: '1px solid #E5E7EB',
-              boxShadow: 'var(--shadow-lg)'
-            }}>
+            <div 
+              className="contact-form-card"
+              style={{
+                background: '#FFFFFF',
+                padding: '3rem 2.5rem',
+                borderRadius: '20px',
+                border: '1px solid #E5E7EB',
+                boxShadow: 'var(--shadow-lg)'
+              }}
+            >
               {!submitted ? (
                 <>
                   <h3 style={{ fontSize: '1.75rem', marginBottom: '0.5rem', color: '#111827' }}>

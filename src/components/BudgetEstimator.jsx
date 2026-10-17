@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IndianRupee, Calculator, Check, ArrowRight } from 'lucide-react';
+import { Calculator, ArrowRight } from 'lucide-react';
 
 export default function BudgetEstimator({ openConsultationModal }) {
   const [bhk, setBhk] = useState('3BHK');
@@ -34,14 +34,17 @@ export default function BudgetEstimator({ openConsultationModal }) {
   const est = calculateEstimate();
 
   return (
-    <div style={{
-      background: 'linear-gradient(135deg, #1F2937 0%, #111827 100%)',
-      color: '#FFFFFF',
-      borderRadius: '20px',
-      padding: '3rem 2rem',
-      boxShadow: '0 20px 40px rgba(0,0,0,0.2)',
-      margin: '3rem 0'
-    }}>
+    <div 
+      className="budget-estimator-card"
+      style={{
+        background: 'linear-gradient(135deg, #1F2937 0%, #111827 100%)',
+        color: '#FFFFFF',
+        borderRadius: '20px',
+        padding: '3rem 2rem',
+        boxShadow: '0 20px 40px rgba(0,0,0,0.2)',
+        margin: '3rem 0'
+      }}
+    >
       <div style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto 2.5rem auto' }}>
         <div className="badge-tag" style={{ background: 'rgba(197, 160, 89, 0.2)', color: '#C5A059' }}>
           <Calculator size={14} /> Interactive Estimator
@@ -54,7 +57,10 @@ export default function BudgetEstimator({ openConsultationModal }) {
         </p>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2.5rem', alignItems: 'center' }}>
+      <div 
+        className="budget-estimator-grid"
+        style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: '2.5rem', alignItems: 'center' }}
+      >
         {/* Controls */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
           {/* Property Size */}
@@ -62,7 +68,7 @@ export default function BudgetEstimator({ openConsultationModal }) {
             <label style={{ display: 'block', fontSize: '0.9rem', fontWeight: '600', marginBottom: '0.6rem', color: '#E5E7EB' }}>
               1. Select Property Layout
             </label>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.5rem' }}>
+            <div className="estimator-bhk-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.5rem' }}>
               {['2BHK', '3BHK', '4BHK', 'Villa'].map((type) => (
                 <button
                   key={type}
@@ -89,7 +95,7 @@ export default function BudgetEstimator({ openConsultationModal }) {
             <label style={{ display: 'block', fontSize: '0.9rem', fontWeight: '600', marginBottom: '0.6rem', color: '#E5E7EB' }}>
               2. Choose Material & Finish Standard
             </label>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.5rem' }}>
+            <div className="estimator-tier-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.5rem' }}>
               {[
                 { name: 'Essential', desc: 'Laminates & HDMR' },
                 { name: 'Premium', desc: 'Acrylics & Quartz' },
@@ -120,7 +126,7 @@ export default function BudgetEstimator({ openConsultationModal }) {
             <label style={{ display: 'block', fontSize: '0.9rem', fontWeight: '600', marginBottom: '0.6rem', color: '#E5E7EB' }}>
               3. Include Core Modules
             </label>
-            <div style={{ display: 'flex', gap: '1rem' }}>
+            <div className="estimator-addons-row" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
               <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', fontSize: '0.9rem' }}>
                 <input
                   type="checkbox"
@@ -157,8 +163,8 @@ export default function BudgetEstimator({ openConsultationModal }) {
             Estimated Investment Range
           </div>
 
-          <div style={{ fontSize: '2.8rem', fontWeight: '800', color: '#FFFFFF', marginBottom: '0.5rem' }}>
-            ₹{est.min} - ₹{est.max} <span style={{ fontSize: '1.2rem', fontWeight: '500', opacity: 0.8 }}>Lakhs</span>
+          <div style={{ fontSize: 'clamp(1.75rem, 4.5vw, 2.8rem)', fontWeight: '800', color: '#FFFFFF', marginBottom: '0.5rem' }}>
+            ₹{est.min} - ₹{est.max} <span style={{ fontSize: 'clamp(1rem, 2vw, 1.2rem)', fontWeight: '500', opacity: 0.8 }}>Lakhs</span>
           </div>
 
           <p style={{ fontSize: '0.85rem', color: '#9CA3AF', marginBottom: '1.5rem' }}>

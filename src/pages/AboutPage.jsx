@@ -1,18 +1,8 @@
 import React from 'react';
 import { COMPANY_INFO, TEAM_MEMBERS } from '../data/content';
-import { 
-  Award, 
-  Users, 
-  Building, 
-  MapPin, 
-  CheckCircle2, 
-  Sparkles, 
-  ArrowRight,
-  ShieldCheck,
-  Compass
-} from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
-export default function AboutPage({ navigateTo, openConsultationModal }) {
+export default function AboutPage({ openConsultationModal }) {
   const philosophies = [
     {
       title: "Functionality First",
@@ -39,22 +29,21 @@ export default function AboutPage({ navigateTo, openConsultationModal }) {
   return (
     <div>
       {/* Header Banner */}
-      <section style={{
-        background: 'linear-gradient(rgba(17,24,39,0.85), rgba(17,24,39,0.85)), url("/images/hero_interior.jpg") center/cover',
-        color: '#FFFFFF',
-        padding: '5rem 0',
-        textAlign: 'center'
-      }}>
+      <section className="page-header-section">
         <div className="container">
-          <div className="badge-tag" style={{ background: 'rgba(197, 160, 89, 0.2)', color: '#C5A059' }}>
-            About UrbanNest Interiors
+          <div className="page-header-banner" style={{
+            backgroundImage: 'linear-gradient(rgba(17,24,39,0.85), rgba(17,24,39,0.85)), url("/images/hero_interior.jpg")'
+          }}>
+            <div className="badge-tag" style={{ background: 'rgba(197, 160, 89, 0.2)', color: '#C5A059' }}>
+              About UrbanNest Interiors
+            </div>
+            <h1 style={{ fontSize: '3rem', color: '#FFFFFF', marginBottom: '1rem' }}>
+              Designing Spaces Where Real Families Thrive
+            </h1>
+            <p style={{ maxWidth: '700px', margin: '0 auto', fontSize: '1.1rem', color: '#D1D5DB' }}>
+              A boutique turnkey interior studio in Ahmedabad dedicated to honest craftsmanship, transparent pricing, and spaces built around how you actually live.
+            </p>
           </div>
-          <h1 style={{ fontSize: '3rem', color: '#FFFFFF', marginBottom: '1rem' }}>
-            Designing Spaces That Elevate Daily Life
-          </h1>
-          <p style={{ maxWidth: '700px', margin: '0 auto', fontSize: '1.1rem', color: '#D1D5DB' }}>
-            Ahmedabad's leading full-service interior design firm committed to delivering functional luxury, transparent execution, and timeless Indian modernism.
-          </p>
         </div>
       </section>
 
@@ -68,13 +57,13 @@ export default function AboutPage({ navigateTo, openConsultationModal }) {
                 Bespoke Interior Solutions in Ahmedabad & Gujarat
               </h2>
               <p style={{ fontSize: '1.05rem', color: '#4B5563', lineHeight: '1.7', marginBottom: '1.25rem' }}>
-                Founded in 2018 in Prahlad Nagar, Ahmedabad, UrbanNest Interiors was born out of a desire to eliminate the friction, cost overruns, and quality compromises traditional home renovation brings.
+                Established in Prahlad Nagar, Ahmedabad, UrbanNest Interiors was born out of a simple desire: to eliminate the friction, confusing contractor arguments, and surprise billing that homeowners dread during renovation.
               </p>
               <p style={{ fontSize: '1.05rem', color: '#4B5563', lineHeight: '1.7', marginBottom: '2rem' }}>
-                We combine architectural studio discipline with state-of-the-art German factory precision manufacturing. By managing every stage—from initial 2D floor plans, 3D photorealistic renderings, civil site alterations to final upholstery—we guarantee a smooth, hassle-free journey for homeowners.
+                We combine architectural creativity with modern factory-precision joinery. By taking single-point ownership of every stage—from realistic 3D drawings and civil adjustments to edge-banded cabinetry and final handover—we give families a calm, predictable, and transparent journey.
               </p>
 
-              <div style={{ display: 'flex', gap: '2rem' }}>
+              <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
                 <div>
                   <div style={{ fontSize: '2.2rem', fontWeight: '800', color: '#C5A059' }}>250+</div>
                   <div style={{ fontSize: '0.85rem', color: '#6B7280' }}>Homes & Offices Delivered</div>
@@ -94,7 +83,9 @@ export default function AboutPage({ navigateTo, openConsultationModal }) {
               <div style={{ borderRadius: '20px', overflow: 'hidden', boxShadow: 'var(--shadow-xl)', height: '440px' }}>
                 <img 
                   src="/images/master_bedroom.jpg" 
-                  alt="Interior Design Studio Team Ahmedabad" 
+                  alt="UrbanNest Interiors design studio craftsmanship and residential execution in Ahmedabad" 
+                  loading="lazy"
+                  decoding="async"
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
               </div>
@@ -166,7 +157,7 @@ export default function AboutPage({ navigateTo, openConsultationModal }) {
 
           <div className="grid-2">
             {TEAM_MEMBERS.map(m => (
-              <div key={m.name} style={{
+              <div key={m.name} className="team-card" style={{
                 display: 'flex',
                 gap: '1.5rem',
                 background: '#FAFAFB',
@@ -177,7 +168,9 @@ export default function AboutPage({ navigateTo, openConsultationModal }) {
               }}>
                 <img 
                   src={m.image} 
-                  alt={m.name} 
+                  alt={`${m.name} - ${m.role} at UrbanNest Interiors Ahmedabad`} 
+                  loading="lazy"
+                  decoding="async"
                   style={{ width: '130px', height: '130px', borderRadius: '12px', objectFit: 'cover', flexShrink: 0 }} 
                 />
                 <div>

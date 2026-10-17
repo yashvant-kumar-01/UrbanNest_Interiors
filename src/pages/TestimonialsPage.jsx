@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { TESTIMONIALS } from '../data/content';
-import { Star, CheckCircle2, Quote, ArrowRight } from 'lucide-react';
+import { Star, CheckCircle2, ArrowRight } from 'lucide-react';
 
 export default function TestimonialsPage({ openConsultationModal }) {
   const [filter, setFilter] = useState('All');
@@ -14,22 +14,21 @@ export default function TestimonialsPage({ openConsultationModal }) {
   return (
     <div>
       {/* Header Banner */}
-      <section style={{
-        background: 'linear-gradient(rgba(17,24,39,0.88), rgba(17,24,39,0.88)), url("/images/master_bedroom.jpg") center/cover',
-        color: '#FFFFFF',
-        padding: '5rem 0',
-        textAlign: 'center'
-      }}>
+      <section className="page-header-section">
         <div className="container">
-          <div className="badge-tag" style={{ background: 'rgba(197, 160, 89, 0.2)', color: '#C5A059' }}>
-            Client Feedback
+          <div className="page-header-banner" style={{
+            backgroundImage: 'linear-gradient(rgba(17,24,39,0.88), rgba(17,24,39,0.88)), url("/images/master_bedroom.jpg")'
+          }}>
+            <div className="badge-tag" style={{ background: 'rgba(197, 160, 89, 0.2)', color: '#C5A059' }}>
+              Client Feedback
+            </div>
+            <h1 style={{ fontSize: '3rem', color: '#FFFFFF', marginBottom: '1rem' }}>
+              What Our Homeowners Say
+            </h1>
+            <p style={{ maxWidth: '700px', margin: '0 auto', fontSize: '1.1rem', color: '#D1D5DB' }}>
+              Read verified reviews from clients across Prahlad Nagar, Bopal, Bodakdev, and GIFT City.
+            </p>
           </div>
-          <h1 style={{ fontSize: '3rem', color: '#FFFFFF', marginBottom: '1rem' }}>
-            What Our Homeowners Say
-          </h1>
-          <p style={{ maxWidth: '700px', margin: '0 auto', fontSize: '1.1rem', color: '#D1D5DB' }}>
-            Read verified reviews from clients across Prahlad Nagar, Bopal, Bodakdev, and GIFT City.
-          </p>
         </div>
       </section>
 
@@ -78,7 +77,13 @@ export default function TestimonialsPage({ openConsultationModal }) {
                 </div>
 
                 <div className="testimonial-author" style={{ marginTop: '1.5rem', paddingTop: '1.25rem', borderTop: '1px solid #F3F4F6' }}>
-                  <img src={t.avatar} alt={t.name} className="author-avatar" />
+                  <img 
+                    src={t.avatar} 
+                    alt={`Client review - ${t.name}, interior project in ${t.location}`} 
+                    loading="lazy"
+                    decoding="async"
+                    className="author-avatar" 
+                  />
                   <div>
                     <div className="author-name" style={{ fontSize: '1.05rem' }}>{t.name}</div>
                     <div className="author-meta">{t.project} • {t.location}</div>

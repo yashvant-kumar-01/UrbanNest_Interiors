@@ -2,13 +2,7 @@ import React, { useState } from 'react';
 import { PROJECTS } from '../data/content';
 import LightboxModal from '../components/LightboxModal';
 import { 
-  MapPin, 
-  Calendar, 
-  Ruler, 
-  IndianRupee, 
   ArrowRight, 
-  CheckCircle2, 
-  Maximize2,
   ChevronLeft
 } from 'lucide-react';
 
@@ -40,12 +34,12 @@ export default function ProjectDetailPage({ projectId, navigateTo, openConsultat
       </div>
 
       {/* Hero Banner */}
-      <section style={{
-        background: `linear-gradient(rgba(17,24,39,0.85), rgba(17,24,39,0.85)), url("${project.heroImage}") center/cover`,
-        color: '#FFFFFF',
-        padding: '5rem 0'
-      }}>
+      <section className="page-header-section">
         <div className="container">
+          <div className="page-header-banner" style={{
+            backgroundImage: `linear-gradient(rgba(17,24,39,0.85), rgba(17,24,39,0.85)), url("${project.heroImage}")`,
+            textAlign: 'left'
+          }}>
           <div style={{ maxWidth: '800px' }}>
             <div style={{ display: 'inline-flex', gap: '0.75rem', marginBottom: '1rem' }}>
               <span className="badge-tag" style={{ background: 'rgba(197, 160, 89, 0.2)', color: '#C5A059' }}>
@@ -64,16 +58,19 @@ export default function ProjectDetailPage({ projectId, navigateTo, openConsultat
             </p>
 
             {/* Quick Spec Pills */}
-            <div style={{
-              display: 'flex',
-              gap: '2rem',
-              background: 'rgba(255,255,255,0.08)',
-              backdropFilter: 'blur(10px)',
-              padding: '1.25rem 1.75rem',
-              borderRadius: '16px',
-              border: '1px solid rgba(255,255,255,0.15)',
-              flexWrap: 'wrap'
-            }}>
+            <div 
+              className="project-spec-pills"
+              style={{
+                display: 'flex',
+                gap: '2rem',
+                background: 'rgba(255,255,255,0.08)',
+                backdropFilter: 'blur(10px)',
+                padding: '1.25rem 1.75rem',
+                borderRadius: '16px',
+                border: '1px solid rgba(255,255,255,0.15)',
+                flexWrap: 'wrap'
+              }}
+            >
               <div>
                 <div style={{ fontSize: '0.75rem', textTransform: 'uppercase', color: '#9CA3AF' }}>Super Built-Up Area</div>
                 <div style={{ fontSize: '1.2rem', fontWeight: '700', color: '#FFFFFF' }}>{project.areaSqFt} sq.ft</div>
@@ -86,6 +83,7 @@ export default function ProjectDetailPage({ projectId, navigateTo, openConsultat
                 <div style={{ fontSize: '0.75rem', textTransform: 'uppercase', color: '#9CA3AF' }}>Investment Tier</div>
                 <div style={{ fontSize: '1.2rem', fontWeight: '700', color: '#C5A059' }}>{project.budgetTier}</div>
               </div>
+            </div>
             </div>
           </div>
         </div>
@@ -185,7 +183,13 @@ export default function ProjectDetailPage({ projectId, navigateTo, openConsultat
                 onClick={() => handleOpenLightbox(idx)}
               >
                 <div className="card-img-wrapper" style={{ height: '320px' }}>
-                  <img src={imgUrl} alt={`${project.title} space ${idx + 1}`} className="card-img" />
+                  <img 
+                    src={imgUrl} 
+                    alt={`${project.title} - ${project.type} interior project photography in ${project.location} (photo ${idx + 1}) - UrbanNest Interiors Ahmedabad`} 
+                    loading="lazy" 
+                    decoding="async" 
+                    className="card-img" 
+                  />
                 </div>
               </div>
             ))}
