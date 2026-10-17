@@ -8,10 +8,10 @@ export const COMPANY_INFO = {
   aboutShort: "We are an interior design studio based in Prahlad Nagar, Ahmedabad. We help families and business owners turn raw floor plans into warm, comfortable homes and workspaces without the typical headaches of contractor delays or sudden budget shocks.",
   foundedYear: 2024,
   stats: [
-    { label: "Homes & Spaces Completed", value: "250+", suffix: "Ahmedabad & Gujarat" },
+    { label: "Homes & Spaces Completed", value: "10+", suffix: "Ahmedabad" },
     { label: "Years of Experience", value: "2+", suffix: "Hands-on Site Execution" },
     { label: "Designers & Site Engineers", value: "15+", suffix: "Full-Time Team" },
-    { label: "Cities Active In", value: "4", suffix: "Ahmedabad, Gandhinagar, Vadodara, Surat" },
+    { label: "Cities Active In", value: "1", suffix: "Ahmedabad" },
     { label: "Client Satisfaction", value: "98%", suffix: "Verified Homeowner Rating" },
   ],
   contact: {
@@ -1411,7 +1411,7 @@ export const FAQS = [
   },
   {
     question: "Do you take up projects outside Ahmedabad?",
-    answer: "Yes. While our primary design studio and workshop are in Prahlad Nagar, Ahmedabad, we regularly execute turnkey homes and commercial spaces in Gandhinagar, Vadodara, and Surat."
+    answer: "Currently, our primary focus and turnkey operations are dedicated exclusively to Ahmedabad, ensuring personal site supervision and the highest quality standards for every project."
   },
   {
     question: "What happens if a drawer hinge sags or a cabinet door gets loose after a year?",

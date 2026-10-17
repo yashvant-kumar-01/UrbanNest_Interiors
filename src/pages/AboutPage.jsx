@@ -65,7 +65,7 @@ export default function AboutPage({ openConsultationModal }) {
 
               <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
                 <div>
-                  <div style={{ fontSize: '2.2rem', fontWeight: '800', color: '#C5A059' }}>250+</div>
+                  <div style={{ fontSize: '2.2rem', fontWeight: '800', color: '#C5A059' }}>10+</div>
                   <div style={{ fontSize: '0.85rem', color: '#6B7280' }}>Homes & Offices Delivered</div>
                 </div>
                 <div>

@@ -98,7 +98,7 @@ export default function TestimonialsPage({ openConsultationModal }) {
       {/* CTA */}
       <section className="container">
         <div className="cta-banner">
-          <h2 className="cta-title">Join Our 250+ Satisfied Homeowners</h2>
+          <h2 className="cta-title">Join Our Satisfied Homeowners</h2>
           <p className="cta-desc">
             Experience 5-star interior design execution for your home in Ahmedabad.
           </p>
