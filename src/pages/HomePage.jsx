@@ -8,6 +8,7 @@ import {
   TESTIMONIALS 
 } from '../data/content';
 import BudgetEstimator from '../components/BudgetEstimator';
+import ScrollToTopButton from '../components/ScrollToTopButton';
 import { 
   ArrowRight, 
   CheckCircle2, 
@@ -470,6 +471,9 @@ export default function HomePage({ navigateTo, openConsultationModal }) {
           </button>
         </div>
       </section>
+
+      {/* Floating Scroll to Top Button */}
+      <ScrollToTopButton />
     </div>
   );
 }
