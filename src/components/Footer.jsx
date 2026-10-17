@@ -46,14 +46,14 @@ export default function Footer({ navigateTo, openConsultationModal, openOwnerMod
             <div>
               <h4 className="footer-heading">Quick Links</h4>
               <ul className="footer-links">
-                <li><a href="/" onClick={(e) => { e.preventDefault(); handleLink('#'); }} className="footer-link" title="UrbanNest Interiors Home">Home</a></li>
-                <li><a href="#/about" onClick={(e) => { e.preventDefault(); handleLink('#/about'); }} className="footer-link">About Us</a></li>
-                <li><a href="#/services" onClick={(e) => { e.preventDefault(); handleLink('#/services'); }} className="footer-link">Our Services</a></li>
-                <li><a href="#/projects" onClick={(e) => { e.preventDefault(); handleLink('#/projects'); }} className="footer-link">Portfolio Projects</a></li>
-                <li><a href="#/process" onClick={(e) => { e.preventDefault(); handleLink('#/process'); }} className="footer-link">Design Process</a></li>
-                <li><a href="#/testimonials" onClick={(e) => { e.preventDefault(); handleLink('#/testimonials'); }} className="footer-link">Testimonials</a></li>
-                <li><a href="#/blog" onClick={(e) => { e.preventDefault(); handleLink('#/blog'); }} className="footer-link">Interior Blog</a></li>
-                <li><a href="#/contact" onClick={(e) => { e.preventDefault(); handleLink('#/contact'); }} className="footer-link">Contact Us</a></li>
+                <li><a href="/" onClick={(e) => { e.preventDefault(); handleLink('/'); }} className="footer-link" title="UrbanNest Interiors Home">Home</a></li>
+                <li><a href="/about" onClick={(e) => { e.preventDefault(); handleLink('/about'); }} className="footer-link">About Us</a></li>
+                <li><a href="/services" onClick={(e) => { e.preventDefault(); handleLink('/services'); }} className="footer-link">Our Services</a></li>
+                <li><a href="/projects" onClick={(e) => { e.preventDefault(); handleLink('/projects'); }} className="footer-link">Portfolio Projects</a></li>
+                <li><a href="/process" onClick={(e) => { e.preventDefault(); handleLink('/process'); }} className="footer-link">Design Process</a></li>
+                <li><a href="/testimonials" onClick={(e) => { e.preventDefault(); handleLink('/testimonials'); }} className="footer-link">Testimonials</a></li>
+                <li><a href="/blog" onClick={(e) => { e.preventDefault(); handleLink('/blog'); }} className="footer-link">Interior Blog</a></li>
+                <li><a href="/contact" onClick={(e) => { e.preventDefault(); handleLink('/contact'); }} className="footer-link">Contact Us</a></li>
               </ul>
             </div>
 
@@ -64,8 +64,8 @@ export default function Footer({ navigateTo, openConsultationModal, openOwnerMod
                 {SERVICES.map(s => (
                   <li key={s.id}>
                     <a 
-                      href={`#/services/${s.slug}`} 
-                      onClick={(e) => { e.preventDefault(); handleLink(`#/services/${s.slug}`); }} 
+                      href={`/services/${s.slug}`} 
+                      onClick={(e) => { e.preventDefault(); handleLink(`/services/${s.slug}`); }} 
                       className="footer-link"
                     >
                       {s.title}
@@ -118,9 +118,9 @@ export default function Footer({ navigateTo, openConsultationModal, openOwnerMod
               >
                 <Lock size={14} /> Owner Portal
               </span>
-              <span style={{ cursor: 'pointer' }} onClick={() => handleLink('#/contact')}>Privacy Policy</span>
-              <span style={{ cursor: 'pointer' }} onClick={() => handleLink('#/contact')}>Terms of Service</span>
-              <span style={{ cursor: 'pointer' }} onClick={() => handleLink('#/process')}>10-Year Warranty Terms</span>
+              <span style={{ cursor: 'pointer' }} onClick={() => handleLink('/contact')}>Privacy Policy</span>
+              <span style={{ cursor: 'pointer' }} onClick={() => handleLink('/contact')}>Terms of Service</span>
+              <span style={{ cursor: 'pointer' }} onClick={() => handleLink('/process')}>10-Year Warranty Terms</span>
             </div>
           </div>
         </footer>

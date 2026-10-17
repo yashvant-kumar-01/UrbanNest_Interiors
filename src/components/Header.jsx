@@ -20,14 +20,14 @@ export default function Header({ currentRoute, navigateTo, openConsultationModal
   }, []);
 
   const navLinks = [
-    { label: 'Home', route: '#', href: '/' },
-    { label: 'About', route: '#/about', href: '#/about' },
-    { label: 'Services', route: '#/services', href: '#/services' },
-    { label: 'Projects', route: '#/projects', href: '#/projects' },
-    { label: 'Process', route: '#/process', href: '#/process' },
-    { label: 'Testimonials', route: '#/testimonials', href: '#/testimonials' },
-    { label: 'Blog', route: '#/blog', href: '#/blog' },
-    { label: 'Contact', route: '#/contact', href: '#/contact' },
+    { label: 'Home', route: '/', href: '/' },
+    { label: 'About', route: '/about', href: '/about' },
+    { label: 'Services', route: '/services', href: '/services' },
+    { label: 'Projects', route: '/projects', href: '/projects' },
+    { label: 'Process', route: '/process', href: '/process' },
+    { label: 'Testimonials', route: '/testimonials', href: '/testimonials' },
+    { label: 'Blog', route: '/blog', href: '/blog' },
+    { label: 'Contact', route: '/contact', href: '/contact' },
   ];
 
   const handleNavClick = (route) => {
@@ -42,7 +42,7 @@ export default function Header({ currentRoute, navigateTo, openConsultationModal
         <div className="container nav-container">
           <a 
             href="/" 
-            onClick={(e) => { e.preventDefault(); handleNavClick('#'); }} 
+            onClick={(e) => { e.preventDefault(); handleNavClick('/'); }} 
             className="brand-logo"
             title="UrbanNest Interiors - Best Interior Designers in Ahmedabad"
           >
@@ -55,7 +55,9 @@ export default function Header({ currentRoute, navigateTo, openConsultationModal
           {/* Desktop Nav */}
           <ul className="nav-links">
             {navLinks.map((item) => {
-              const isActive = currentRoute === item.route || (item.route !== '#' && currentRoute.startsWith(item.route));
+              const isActive = item.route === '/' 
+                ? currentRoute === '/' 
+                : currentRoute === item.route || currentRoute.startsWith(item.route + '/');
               return (
                 <li key={item.label}>
                   <a

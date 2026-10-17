@@ -72,10 +72,10 @@ export default function BlogPage({ navigateTo }) {
                 <div 
                   className="card-img-wrapper" 
                   style={{ height: '220px', cursor: 'pointer' }}
-                  onClick={() => navigateTo(`#/blog/${post.slug}`)}
+                  onClick={() => navigateTo(`/blog/${post.slug}`)}
                   role="button"
                   tabIndex={0}
-                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') navigateTo(`#/blog/${post.slug}`); }}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') navigateTo(`/blog/${post.slug}`); }}
                   title={`Read: ${post.title}`}
                 >
                   <img 
@@ -120,14 +120,14 @@ export default function BlogPage({ navigateTo }) {
                   <h3 
                     className="card-title" 
                     style={{ fontSize: '1.25rem', cursor: 'pointer' }}
-                    onClick={() => navigateTo(`#/blog/${post.slug}`)}
+                    onClick={() => navigateTo(`/blog/${post.slug}`)}
                   >
                     {post.title}
                   </h3>
                   <p className="card-text">{post.excerpt}</p>
 
                   <button
-                    onClick={() => navigateTo(`#/blog/${post.slug}`)}
+                    onClick={() => navigateTo(`/blog/${post.slug}`)}
                     className="btn btn-outline btn-sm"
                     style={{ width: '100%', justifyContent: 'space-between' }}
                   >

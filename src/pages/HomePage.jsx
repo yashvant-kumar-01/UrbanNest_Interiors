@@ -66,7 +66,7 @@ export default function HomePage({ navigateTo, openConsultationModal }) {
 
               <div className="hero-buttons">
                 <button 
-                  onClick={() => navigateTo('#/projects')} 
+                  onClick={() => navigateTo('/projects')} 
                   className="btn btn-primary btn-lg"
                 >
                   <span>Explore Our Projects</span>
@@ -133,7 +133,7 @@ export default function HomePage({ navigateTo, openConsultationModal }) {
               </div>
 
               <button 
-                onClick={() => navigateTo('#/about')} 
+                onClick={() => navigateTo('/about')} 
                 className="btn btn-secondary"
               >
                 <span>Read Our Full Story</span>
@@ -191,7 +191,7 @@ export default function HomePage({ navigateTo, openConsultationModal }) {
               <div key={s.id} className="card">
                 <div 
                   className="card-img-wrapper"
-                  onClick={() => navigateTo(`#/services/${s.slug}`)}
+                  onClick={() => navigateTo(`/services/${s.slug}`)}
                   style={{ cursor: 'pointer' }}
                   title={`View ${s.title}`}
                 >
@@ -206,14 +206,14 @@ export default function HomePage({ navigateTo, openConsultationModal }) {
                 <div className="card-body">
                   <h3 
                     className="card-title"
-                    onClick={() => navigateTo(`#/services/${s.slug}`)}
+                    onClick={() => navigateTo(`/services/${s.slug}`)}
                     style={{ cursor: 'pointer' }}
                   >
                     {s.title}
                   </h3>
                   <p className="card-text">{s.shortDesc}</p>
                   <button
-                    onClick={() => navigateTo(`#/services/${s.slug}`)}
+                    onClick={() => navigateTo(`/services/${s.slug}`)}
                     className="btn btn-outline btn-sm"
                     style={{ width: '100%', justifyContent: 'space-between' }}
                   >
@@ -227,7 +227,7 @@ export default function HomePage({ navigateTo, openConsultationModal }) {
 
           <div style={{ textAlign: 'center', marginTop: '3rem' }}>
             <button 
-              onClick={() => navigateTo('#/services')} 
+              onClick={() => navigateTo('/services')} 
               className="btn btn-primary"
             >
               <span>Explore All Services & Pricing</span>
@@ -298,7 +298,7 @@ export default function HomePage({ navigateTo, openConsultationModal }) {
               <div key={proj.id} className="card">
                 <div 
                   className="card-img-wrapper" 
-                  onClick={() => navigateTo(`#/projects/${proj.id}`)}
+                  onClick={() => navigateTo(`/projects/${proj.id}`)}
                   style={{ height: '260px', cursor: 'pointer' }}
                   title={`View ${proj.title} project`}
                 >
@@ -330,14 +330,14 @@ export default function HomePage({ navigateTo, openConsultationModal }) {
                   </div>
                   <h3 
                     className="card-title"
-                    onClick={() => navigateTo(`#/projects/${proj.id}`)}
+                    onClick={() => navigateTo(`/projects/${proj.id}`)}
                     style={{ cursor: 'pointer' }}
                   >
                     {proj.title}
                   </h3>
                   <p className="card-text">{proj.overview.substring(0, 110)}...</p>
                   <button
-                    onClick={() => navigateTo(`#/projects/${proj.id}`)}
+                    onClick={() => navigateTo(`/projects/${proj.id}`)}
                     className="btn btn-outline btn-sm"
                     style={{ width: '100%', justifyContent: 'space-between' }}
                   >
@@ -351,7 +351,7 @@ export default function HomePage({ navigateTo, openConsultationModal }) {
 
           <div style={{ textAlign: 'center', marginTop: '3rem' }}>
             <button 
-              onClick={() => navigateTo('#/projects')} 
+              onClick={() => navigateTo('/projects')} 
               className="btn btn-secondary"
             >
               <span>View All {PROJECTS.length} Completed Projects</span>
@@ -396,7 +396,7 @@ export default function HomePage({ navigateTo, openConsultationModal }) {
 
           <div style={{ textAlign: 'center', marginTop: '3rem' }}>
             <button 
-              onClick={() => navigateTo('#/process')} 
+              onClick={() => navigateTo('/process')} 
               className="btn btn-outline"
               style={{ maxWidth: '100%', whiteSpace: 'normal', textAlign: 'center' }}
             >

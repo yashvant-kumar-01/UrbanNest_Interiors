@@ -18,76 +18,95 @@ import ContactPage from './pages/ContactPage';
 import ConsultationPage from './pages/ConsultationPage';
 import { updateRouteSEO } from './utils/seoHelper';
 
-function getNormalizedRoute(hash) {
-  if (!hash || hash === '#' || hash === '#/' || hash === '/' || hash === '#home') {
-    return '#';
+export function normalizeRoute(pathOrHash) {
+  if (!pathOrHash) return '/';
+  let clean = pathOrHash;
+  if (clean.startsWith('#')) {
+    clean = clean.slice(1);
   }
-  return hash;
+  if (!clean.startsWith('/')) {
+    clean = '/' + clean;
+  }
+  if (clean.length > 1 && clean.endsWith('/')) {
+    clean = clean.slice(0, -1);
+  }
+  if (clean === '/home' || clean === '') {
+    return '/';
+  }
+  return clean;
+}
+
+function getInitialRoute() {
+  if (typeof window === 'undefined') return '/';
+  if (window.location.hash) {
+    const clean = normalizeRoute(window.location.hash);
+    if (window.history.replaceState) {
+      window.history.replaceState(null, '', clean + window.location.search);
+    }
+    return clean;
+  }
+  return normalizeRoute(window.location.pathname);
 }
 
 export default function App() {
-  const [currentRoute, setCurrentRoute] = useState(() => getNormalizedRoute(window.location.hash));
+  const [currentRoute, setCurrentRoute] = useState(() => getInitialRoute());
   const [isConsultationModalOpen, setIsConsultationModalOpen] = useState(false);
-  const [isOwnerModalOpen, setIsOwnerModalOpen] = useState(
-    () => window.location.hash === '#/owner' || window.location.hash === '#/admin'
-  );
+  const [isOwnerModalOpen, setIsOwnerModalOpen] = useState(() => {
+    const r = getInitialRoute();
+    return r === '/owner' || r === '/admin';
+  });
 
   useEffect(() => {
-    // If initially landed on a home hash (#, #/, #home), strip it to provide a clean root URL
-    const initialHash = window.location.hash;
-    if (initialHash === '#' || initialHash === '#/' || initialHash === '#home') {
+    // If initially landed on a hash (#, #/, #/about), normalize to clean path
+    if (window.location.hash) {
+      const clean = normalizeRoute(window.location.hash);
       if (window.history.replaceState) {
-        window.history.replaceState(null, '', window.location.pathname + window.location.search);
+        window.history.replaceState(null, '', clean + window.location.search);
       }
     }
 
-    // Initial SEO update with normalized home metadata
-    updateRouteSEO(getNormalizedRoute(window.location.hash));
+    const current = normalizeRoute(window.location.pathname);
+    updateRouteSEO(current);
 
     const handleLocationChange = () => {
-      const hash = window.location.hash;
-      const normalized = getNormalizedRoute(hash);
-
-      setCurrentRoute(normalized);
-      updateRouteSEO(normalized);
-
-      // Keep address bar clean when on homepage
-      if (normalized === '#' && window.location.hash) {
+      let activePath = normalizeRoute(window.location.pathname);
+      if (window.location.hash) {
+        activePath = normalizeRoute(window.location.hash);
         if (window.history.replaceState) {
-          window.history.replaceState(null, '', window.location.pathname + window.location.search);
+          window.history.replaceState(null, '', activePath + window.location.search);
         }
       }
 
-      if (normalized === '#/owner' || normalized === '#/admin') {
+      setCurrentRoute(activePath);
+      updateRouteSEO(activePath);
+
+      if (activePath === '/owner' || activePath === '/admin') {
         setIsOwnerModalOpen(true);
       }
       window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
-    window.addEventListener('hashchange', handleLocationChange);
     window.addEventListener('popstate', handleLocationChange);
+    window.addEventListener('hashchange', handleLocationChange);
     return () => {
-      window.removeEventListener('hashchange', handleLocationChange);
       window.removeEventListener('popstate', handleLocationChange);
+      window.removeEventListener('hashchange', handleLocationChange);
     };
   }, []);
 
   const navigateTo = (route) => {
-    const isHome = !route || route === '#' || route === '#/' || route === '/' || route === '' || route === '#home';
-    if (isHome) {
-      setCurrentRoute('#');
-      updateRouteSEO('#');
-      if (window.location.hash) {
-        if (window.history.pushState) {
-          window.history.pushState(null, '', window.location.pathname + window.location.search);
-        } else {
-          window.location.hash = '';
-        }
-      }
-    } else {
-      window.location.hash = route;
-      setCurrentRoute(route);
+    const target = normalizeRoute(route);
+
+    if (target === '/owner' || target === '/admin') {
+      setIsOwnerModalOpen(true);
+      return;
     }
+
+    if (window.history.pushState) {
+      window.history.pushState(null, '', target);
+    }
+    setCurrentRoute(target);
+    updateRouteSEO(target);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -100,43 +119,43 @@ export default function App() {
   const renderContent = () => {
     const route = currentRoute;
 
-    if (route === '#' || route === '#/' || route === '' || route === '/' || route === '#home') {
+    if (route === '/' || route === '') {
       return <HomePage navigateTo={navigateTo} openConsultationModal={openConsultationModal} />;
     }
-    if (route === '#/about') {
+    if (route === '/about') {
       return <AboutPage navigateTo={navigateTo} openConsultationModal={openConsultationModal} />;
     }
-    if (route === '#/services') {
+    if (route === '/services') {
       return <ServicesPage navigateTo={navigateTo} openConsultationModal={openConsultationModal} />;
     }
-    if (route.startsWith('#/services/')) {
-      const slug = route.replace('#/services/', '');
+    if (route.startsWith('/services/')) {
+      const slug = route.replace('/services/', '');
       return <ServiceDetailPage slug={slug} navigateTo={navigateTo} openConsultationModal={openConsultationModal} />;
     }
-    if (route === '#/projects') {
+    if (route === '/projects') {
       return <ProjectsPage navigateTo={navigateTo} openConsultationModal={openConsultationModal} />;
     }
-    if (route.startsWith('#/projects/')) {
-      const id = route.replace('#/projects/', '');
+    if (route.startsWith('/projects/')) {
+      const id = route.replace('/projects/', '');
       return <ProjectDetailPage projectId={id} navigateTo={navigateTo} openConsultationModal={openConsultationModal} />;
     }
-    if (route === '#/process') {
+    if (route === '/process') {
       return <ProcessPage navigateTo={navigateTo} openConsultationModal={openConsultationModal} />;
     }
-    if (route === '#/testimonials') {
+    if (route === '/testimonials') {
       return <TestimonialsPage openConsultationModal={openConsultationModal} />;
     }
-    if (route === '#/blog') {
+    if (route === '/blog') {
       return <BlogPage navigateTo={navigateTo} openConsultationModal={openConsultationModal} />;
     }
-    if (route.startsWith('#/blog/')) {
-      const slug = route.replace('#/blog/', '');
+    if (route.startsWith('/blog/')) {
+      const slug = route.replace('/blog/', '');
       return <BlogDetailPage slug={slug} navigateTo={navigateTo} openConsultationModal={openConsultationModal} />;
     }
-    if (route === '#/contact') {
+    if (route === '/contact') {
       return <ContactPage />;
     }
-    if (route === '#/consultation') {
+    if (route === '/consultation') {
       return <ConsultationPage />;
     }
 

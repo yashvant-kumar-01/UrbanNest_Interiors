@@ -72,10 +72,10 @@ export default function ProjectsPage({ navigateTo, openConsultationModal }) {
                 <div 
                   className="card-img-wrapper" 
                   style={{ height: '270px', cursor: 'pointer' }}
-                  onClick={() => navigateTo(`#/projects/${proj.id}`)}
+                  onClick={() => navigateTo(`/projects/${proj.id}`)}
                   role="button"
                   tabIndex={0}
-                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') navigateTo(`#/projects/${proj.id}`); }}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') navigateTo(`/projects/${proj.id}`); }}
                   title={`View project: ${proj.title}`}
                 >
                   <img 
@@ -108,7 +108,7 @@ export default function ProjectsPage({ navigateTo, openConsultationModal }) {
                   <h3 
                     className="card-title" 
                     style={{ fontSize: '1.4rem', cursor: 'pointer' }}
-                    onClick={() => navigateTo(`#/projects/${proj.id}`)}
+                    onClick={() => navigateTo(`/projects/${proj.id}`)}
                   >
                     {proj.title}
                   </h3>
@@ -129,7 +129,7 @@ export default function ProjectsPage({ navigateTo, openConsultationModal }) {
                       Area: <strong>{proj.areaSqFt} sq.ft</strong>
                     </span>
                     <button
-                      onClick={() => navigateTo(`#/projects/${proj.id}`)}
+                      onClick={() => navigateTo(`/projects/${proj.id}`)}
                       className="btn btn-outline btn-sm"
                     >
                       <span>View Project</span>

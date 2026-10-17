@@ -33,14 +33,14 @@ export default function ServiceDetailPage({ slug, navigateTo, openConsultationMo
       <nav aria-label="Breadcrumb" style={{ background: '#1F2937', padding: '0.75rem 0', color: '#D1D5DB', fontSize: '0.875rem' }}>
         <div className="container" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
           <button 
-            onClick={() => navigateTo('#')}
+            onClick={() => navigateTo('/')}
             style={{ background: 'none', border: 'none', color: '#C5A059', cursor: 'pointer', fontWeight: '600', padding: 0 }}
           >
             Home
           </button>
           <span>/</span>
           <button 
-            onClick={() => navigateTo('#/services')}
+            onClick={() => navigateTo('/services')}
             style={{ background: 'none', border: 'none', color: '#C5A059', cursor: 'pointer', fontWeight: '600', padding: 0 }}
           >
             Services
@@ -73,7 +73,7 @@ export default function ServiceDetailPage({ slug, navigateTo, openConsultationMo
                   <Calendar size={18} style={{ flexShrink: 0 }} />
                   <span>Book Service Consultation</span>
                 </button>
-                <button onClick={() => navigateTo('#/projects')} className="btn btn-outline-white btn-lg">
+                <button onClick={() => navigateTo('/projects')} className="btn btn-outline-white btn-lg">
                   <span>View Real Executed Projects</span>
                 </button>
               </div>

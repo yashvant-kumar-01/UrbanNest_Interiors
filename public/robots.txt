@@ -5,6 +5,8 @@ User-agent: *
 Allow: /
 Allow: /images/
 Allow: /assets/
+Disallow: /owner
+Disallow: /admin
 Disallow: /#/owner
 Disallow: /#/admin
 

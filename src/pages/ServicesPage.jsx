@@ -37,7 +37,7 @@ export default function ServicesPage({ navigateTo, openConsultationModal }) {
                 >
                   <div 
                     className="service-card-img-wrap"
-                    onClick={() => navigateTo(`#/services/${s.slug}`)}
+                    onClick={() => navigateTo(`/services/${s.slug}`)}
                     style={{ cursor: 'pointer' }}
                     title={`View ${s.title} in detail`}
                   >
@@ -76,7 +76,7 @@ export default function ServicesPage({ navigateTo, openConsultationModal }) {
 
                     <div style={{ display: 'flex', gap: '1rem' }}>
                       <button
-                        onClick={() => navigateTo(`#/services/${s.slug}`)}
+                        onClick={() => navigateTo(`/services/${s.slug}`)}
                         className="btn btn-primary"
                       >
                         <span>Detailed Page</span>

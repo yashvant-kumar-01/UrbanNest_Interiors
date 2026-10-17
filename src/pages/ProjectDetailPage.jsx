@@ -23,7 +23,7 @@ export default function ProjectDetailPage({ projectId, navigateTo, openConsultat
       <div style={{ background: '#1F2937', padding: '0.75rem 0', color: '#D1D5DB', fontSize: '0.875rem' }}>
         <div className="container" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap', overflowWrap: 'break-word', wordBreak: 'break-word' }}>
           <button 
-            onClick={() => navigateTo('#/projects')}
+            onClick={() => navigateTo('/projects')}
             style={{ background: 'none', border: 'none', color: '#C5A059', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.3rem', fontWeight: '600', padding: 0 }}
           >
             <ChevronLeft size={16} /> All Portfolio Projects
