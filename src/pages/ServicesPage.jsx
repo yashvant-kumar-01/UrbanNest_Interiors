@@ -31,19 +31,19 @@ export default function ServicesPage({ navigateTo, openConsultationModal }) {
             {SERVICES.map((s, idx) => {
               const isEven = idx % 2 === 0;
               return (
-                <div 
-                  key={s.id} 
+                <div
+                  key={s.id}
                   className={`service-overview-card ${isEven ? 'even' : 'odd'}`}
                 >
-                  <div 
+                  <div
                     className="service-card-img-wrap"
                     onClick={() => navigateTo(`/services/${s.slug}`)}
                     style={{ cursor: 'pointer' }}
                     title={`View ${s.title} in detail`}
                   >
-                    <img 
-                      src={s.heroImage} 
-                      alt={`${s.title} interior design in Ahmedabad - UrbanNest Interiors`} 
+                    <img
+                      src={s.heroImage}
+                      alt={`${s.title} interior design in Ahmedabad - UrbanNest Interiors`}
                       loading="lazy"
                       decoding="async"
                       style={{ width: '100%', height: '100%', objectFit: 'cover' }}
