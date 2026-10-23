@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { X, CheckCircle, Calendar, ShieldCheck } from 'lucide-react';
-import { SERVICES } from '../data/content';
+import { COMPANY_INFO, SERVICES } from '../data/content';
 
 import { processLeadSubmission } from '../utils/leadHandler';
 
@@ -238,7 +238,7 @@ export default function ConsultationModal({ isOpen, onClose }) {
               </div>
               <div style={{ fontSize: '1.3rem', fontWeight: '800', color: '#111827' }}>{refNumber}</div>
               <div style={{ fontSize: '0.85rem', color: '#059669', marginTop: '0.4rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                <CheckCircle size={15} /> <span>Notification dispatched to studio email (hello@urbannestinteriors.com)</span>
+                <CheckCircle size={15} /> <span>Notification dispatched to studio email ({COMPANY_INFO.contact.email})</span>
               </div>
             </div>
 

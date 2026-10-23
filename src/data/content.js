@@ -18,7 +18,7 @@ export const COMPANY_INFO = {
     address: "402, Pinnacle Business Park, Corporate Road, Prahlad Nagar, Ahmedabad, Gujarat 380015",
     phone: "+91 98795 43210",
     phoneSecondary: "+91 79 4005 8890",
-    email: "hello@urbannestinteriors.com",
+    email: "prajapatiyashwant507@gmail.com",
     hours: "Monday – Saturday: 10:00 AM – 7:00 PM (Sunday by Appointment)",
     mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.936718428801!2d72.50325497597148!3d23.02613611620299!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9b32b3531b25%3A0x6b4f738f65ef92a5!2sPrahlad%20Nagar%2C%20Ahmedabad%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
   },

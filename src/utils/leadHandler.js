@@ -33,7 +33,7 @@ export function processLeadSubmission(formData, refId) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        access_key: '56453965-067d-419b-aef7-1a0694709f7a', // Web3Forms Public Access Key for hello@urbannestinteriors.com
+        access_key: '56453965-067d-419b-aef7-1a0694709f7a', // Web3Forms Public Access Key for prajapatiyashwant507@gmail.com
         subject: `New Interior Inquiry from ${leadEntry.name} (${leadEntry.location})`,
         from_name: 'UrbanNest Interiors Web Portal',
         name: leadEntry.name,

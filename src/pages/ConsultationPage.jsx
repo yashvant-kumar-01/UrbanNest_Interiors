@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SERVICES } from '../data/content';
+import { COMPANY_INFO, SERVICES } from '../data/content';
 import { CheckCircle, ShieldCheck, Send } from 'lucide-react';
 
 import { processLeadSubmission } from '../utils/leadHandler';
@@ -287,7 +287,7 @@ export default function ConsultationPage() {
                     Scheduled Contact Window: {formData.preferredContactTime}
                   </div>
                   <div style={{ fontSize: '0.85rem', color: '#059669', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                    <CheckCircle size={15} /> <span>Email notification sent to studio (hello@urbannestinteriors.com)</span>
+                    <CheckCircle size={15} /> <span>Email notification sent to studio ({COMPANY_INFO.contact.email})</span>
                   </div>
                 </div>
 

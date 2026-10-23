@@ -320,7 +320,7 @@ export default function ContactPage() {
                       <span style={{ fontSize: '0.8rem', background: '#DEF7EC', color: '#03543F', padding: '0.2rem 0.5rem', borderRadius: '6px', fontWeight: '600' }}>✓ Saved & Dispatched</span>
                     </div>
                     <div style={{ fontSize: '0.85rem', color: '#059669', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                      <CheckCircle size={15} /> <span>Email notification sent to studio desk (hello@urbannestinteriors.com)</span>
+                      <CheckCircle size={15} /> <span>Email notification sent to studio desk ({COMPANY_INFO.contact.email})</span>
                     </div>
                   </div>
 
