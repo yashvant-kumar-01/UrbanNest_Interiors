@@ -14,4 +14,4 @@ Disallow: /#/admin
 Crawl-delay: 1
 
 # XML Sitemap location
-Sitemap: https://urbannestinteriors.com/sitemap.xml
+Sitemap: https://urban-nest-interiors-nine.vercel.app/sitemap.xml
